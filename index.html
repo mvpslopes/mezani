@@ -2,7 +2,8 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0a0a0a">
 <title>Mezani Engenharia e Serviços</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -21,53 +22,131 @@
   --fonte-corpo: 'Inter', sans-serif;
 }
 html { scroll-behavior: smooth; }
-body { font-family: var(--fonte-corpo); background: var(--preto); color: var(--branco); overflow-x: hidden; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+body {
+  font-family: var(--fonte-corpo); background: var(--preto); color: var(--branco);
+  overflow-x: hidden; -webkit-tap-highlight-color: transparent;
+  overflow-wrap: anywhere; word-wrap: break-word;
+}
+body.menu-open { overflow: hidden; touch-action: none; }
+/* Foco visível (teclado) */
+a:focus-visible, button:focus-visible, .hamburger:focus-visible, select:focus-visible, input:focus-visible, textarea:focus-visible {
+  outline: 2px solid var(--laranja);
+  outline-offset: 3px;
+}
+.btn-laranja:focus-visible, .nav-cta:focus-visible { outline-offset: 2px; }
+body.splash-lock { overflow: hidden; }
+
+/* SPLASH */
+#splash {
+  position: fixed; inset: 0; z-index: 500;
+  display: grid; place-items: center;
+  padding: 0;
+  background:
+    radial-gradient(ellipse 80% 55% at 50% 18%, rgba(232,98,26,.14) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 40% at 80% 80%, rgba(232,98,26,.06) 0%, transparent 45%),
+    linear-gradient(165deg, #0c0c0c 0%, #050505 55%, #0a0a0a 100%);
+  transition: opacity .65s ease, visibility .65s ease;
+}
+#splash.splash--done { opacity: 0; visibility: hidden; pointer-events: none; }
+.splash-inner {
+  text-align: center;
+  padding: 2rem;
+  width: min(90vw, 420px);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.splash-logo {
+  width: min(260px, 72vw); height: auto; display: block; margin: 0 auto;
+  filter: drop-shadow(0 12px 40px rgba(0,0,0,.45));
+  animation: splashLogoIn .95s cubic-bezier(.22,1,.36,1) .12s both;
+}
+.splash-line {
+  width: min(200px, 50vw); height: 2px; margin: 1.75rem auto 0;
+  background: linear-gradient(90deg, transparent, rgba(232,98,26,.85), transparent);
+  transform-origin: center;
+  animation: splashLineIn .7s ease .55s both;
+}
+.splash-tagline {
+  margin-top: 1.25rem; font-size: .72rem; letter-spacing: .2em; text-transform: uppercase;
+  color: rgba(255,255,255,.42);
+  animation: splashFade .6s ease .85s both;
+}
+@keyframes splashLogoIn {
+  from { opacity: 0; transform: translateY(18px) scale(.94); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes splashLineIn {
+  from { opacity: 0; transform: scaleX(0); }
+  to { opacity: 1; transform: scaleX(1); }
+}
+@keyframes splashFade {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .splash-logo, .splash-line, .splash-tagline { animation: none !important; opacity: 1; transform: none; }
+}
 
 /* NAV */
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 200;
   display: flex; align-items: center; justify-content: space-between;
-  padding: 1.2rem 5vw;
+  padding: max(1.2rem, env(safe-area-inset-top)) max(5vw, env(safe-area-inset-right)) 1.2rem max(5vw, env(safe-area-inset-left));
   background: rgba(10,10,10,0.75); backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--borda); transition: background .3s;
+  border-bottom: 1px solid var(--borda);
+  transition: background .3s ease, box-shadow .35s ease;
 }
+nav.nav--scrolled { box-shadow: 0 12px 40px rgba(0,0,0,.42); }
 .logo-wrap { display: flex; align-items: center; gap: .7rem; }
-.logo-icon { width: 32px; height: 32px; background: var(--laranja); display: flex; align-items: center; justify-content: center; }
-.logo-icon svg { width: 18px; height: 18px; fill: #fff; }
-.logo-texto { font-family: var(--fonte-titulo); font-size: 1.05rem; font-weight: 700; letter-spacing: .04em; }
-.logo-texto span { color: var(--laranja); }
+.logo-link { display: flex; align-items: center; text-decoration: none; line-height: 0; }
+.logo-img { height: 46px; width: auto; max-width: min(200px, 46vw); object-fit: contain; display: block; transition: transform .28s ease; }
+nav.nav--scrolled .logo-img { transform: scale(.94); }
+.logo-img--footer { height: 52px; max-width: 220px; opacity: .96; }
 .nav-links { display: flex; gap: 2rem; list-style: none; }
 .nav-links a { font-size: .78rem; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.65); text-decoration: none; transition: color .2s; }
 .nav-links a:hover { color: #fff; }
 .nav-cta { background: var(--laranja); color: #fff; border: none; font-family: var(--fonte-corpo); font-size: .76rem; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; padding: .6rem 1.4rem; cursor: pointer; text-decoration: none; transition: background .2s; border-radius: 2px; }
 .nav-cta:hover { background: var(--laranja-hover); }
-.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+.hamburger {
+  display: none; flex-direction: column; gap: 5px; cursor: pointer;
+  border: none; background: transparent; color: inherit; padding: 0; margin: 0;
+  -webkit-appearance: none; appearance: none;
+}
 .hamburger span { display: block; width: 22px; height: 1.5px; background: #fff; transition: all .3s; }
 .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
 .hamburger.open span:nth-child(2) { opacity: 0; }
 .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
-.mobile-menu { display: none; position: fixed; top: 62px; left: 0; right: 0; background: rgba(10,10,10,.97); backdrop-filter: blur(16px); padding: 2rem 5vw; flex-direction: column; gap: 1.3rem; z-index: 199; border-bottom: 1px solid var(--borda); }
+.mobile-menu { display: none; position: fixed; top: 0; left: 0; right: 0; padding-top: calc(env(safe-area-inset-top) + 2.4rem + 46px); background: rgba(10,10,10,.97); backdrop-filter: blur(16px); padding-left: max(5vw, env(safe-area-inset-left)); padding-right: max(5vw, env(safe-area-inset-right)); padding-bottom: max(2rem, env(safe-area-inset-bottom)); flex-direction: column; gap: .5rem; z-index: 199; border-bottom: 1px solid var(--borda); max-height: min(100vh, 100dvh); overflow-y: auto; -webkit-overflow-scrolling: touch; }
 .mobile-menu.open { display: flex; }
-.mobile-menu a { font-size: .85rem; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.75); text-decoration: none; padding-bottom: 1rem; border-bottom: 1px solid var(--borda); }
+.mobile-menu a { font-size: .85rem; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.75); text-decoration: none; padding: .85rem 0; min-height: 48px; display: flex; align-items: center; border-bottom: 1px solid var(--borda); }
 
 /* HERO */
-#hero { min-height: 100vh; position: relative; display: flex; align-items: center; padding: 0 5vw; overflow: hidden; }
+#hero { min-height: 100vh; min-height: 100dvh; position: relative; display: flex; align-items: flex-start; padding: clamp(7.25rem, 12vh, 11rem) max(5vw, env(safe-area-inset-right)) max(3rem, env(safe-area-inset-bottom)) max(5vw, env(safe-area-inset-left)); overflow: hidden; }
 .hero-bg-img { position: absolute; inset: 0; background-image: url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1800&auto=format&fit=crop&q=80'); background-size: cover; background-position: center 40%; filter: brightness(.42) saturate(1.1); }
 .hero-overlay { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(10,10,10,.9) 38%, rgba(10,10,10,.15) 100%); }
 .hero-content { position: relative; z-index: 2; max-width: 680px; animation: fadeUp .9s ease both; }
-.hero-badges { display: flex; gap: .8rem; margin-bottom: 2rem; flex-wrap: wrap; }
-.badge { display: inline-flex; align-items: center; gap: .5rem; font-size: .68rem; letter-spacing: .15em; text-transform: uppercase; color: rgba(255,255,255,.5); padding: .4rem .9rem; border: 1px solid var(--borda); border-radius: 100px; }
-.badge-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--laranja); }
-.hero-titulo { font-family: var(--fonte-titulo); font-size: clamp(2.5rem, 5.2vw, 4.8rem); font-weight: 800; line-height: 1.06; letter-spacing: -.02em; margin-bottom: 1.4rem; }
+.hero-titulo { font-family: var(--fonte-titulo); font-size: clamp(1.85rem, 3.8vw, 3.35rem); font-weight: 800; line-height: 1.12; letter-spacing: -.02em; margin-bottom: 1.15rem; }
 .hero-titulo .destaque { color: var(--laranja); }
-.hero-desc { font-size: .97rem; line-height: 1.75; color: rgba(255,255,255,.58); max-width: 460px; margin-bottom: 2.4rem; }
+.hero-desc { font-size: .9rem; line-height: 1.72; color: rgba(255,255,255,.58); max-width: 440px; margin-bottom: 2rem; }
 .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
 .btn-laranja { display: inline-flex; align-items: center; gap: .6rem; background: var(--laranja); color: #fff; font-family: var(--fonte-corpo); font-size: .8rem; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; padding: .85rem 1.7rem; text-decoration: none; border-radius: 2px; transition: background .2s, transform .15s; }
 .btn-laranja:hover { background: var(--laranja-hover); transform: translateY(-2px); }
+@media (prefers-reduced-motion: reduce) {
+  .btn-laranja:hover, .btn-ghost:hover { transform: none; }
+}
 .btn-laranja svg { width: 15px; height: 15px; fill: none; stroke: #fff; stroke-width: 2; }
 .btn-ghost { display: inline-flex; align-items: center; gap: .6rem; background: transparent; color: rgba(255,255,255,.75); font-family: var(--fonte-corpo); font-size: .8rem; letter-spacing: .06em; text-transform: uppercase; padding: .85rem 1.7rem; text-decoration: none; border: 1px solid rgba(255,255,255,.2); border-radius: 2px; transition: border-color .2s, color .2s; }
 .btn-ghost:hover { border-color: rgba(255,255,255,.5); color: #fff; }
-.hero-scroll { position: absolute; bottom: 2.5rem; left: 5vw; z-index: 2; display: flex; align-items: center; gap: .8rem; font-size: .68rem; letter-spacing: .15em; text-transform: uppercase; color: rgba(255,255,255,.3); }
+.hero-trust { margin-top: 2.1rem; display: grid; grid-template-columns: repeat(3, minmax(130px, 1fr)); gap: .8rem; max-width: 560px; }
+.hero-trust-item { border: 1px solid var(--borda); border-radius: 2px; padding: .85rem .9rem; background: rgba(255,255,255,.02); }
+.hero-trust-num { display: block; font-family: var(--fonte-titulo); font-size: 1.4rem; font-weight: 700; letter-spacing: -.02em; line-height: 1; }
+.hero-trust-label { display: block; margin-top: .35rem; font-size: .65rem; letter-spacing: .11em; text-transform: uppercase; color: rgba(255,255,255,.48); }
+.hero-scroll { position: absolute; bottom: max(2.5rem, env(safe-area-inset-bottom)); left: max(5vw, env(safe-area-inset-left)); z-index: 2; display: flex; align-items: center; gap: .8rem; font-size: .68rem; letter-spacing: .15em; text-transform: uppercase; color: rgba(255,255,255,.3); }
 .scroll-line { width: 36px; height: 1px; background: rgba(255,255,255,.18); }
 
 /* SEÇÕES */
@@ -81,8 +160,11 @@ section { padding: 6rem 5vw; }
 #servicos { background: var(--escuro); }
 .servicos-top { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3.5rem; gap: 2rem; flex-wrap: wrap; }
 .servicos-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px; background: var(--borda); }
-.servico-card { background: var(--card-bg); padding: 2.8rem 2.2rem; position: relative; overflow: hidden; transition: background .3s; }
-.servico-card:hover { background: #1d1d1d; }
+.servico-card { background: var(--card-bg); padding: 2.8rem 2.2rem; position: relative; overflow: hidden; transition: background .3s ease, transform .28s ease, box-shadow .28s ease; }
+.servico-card:hover { background: #1d1d1d; transform: translateY(-4px); box-shadow: 0 18px 48px rgba(0,0,0,.35); }
+@media (prefers-reduced-motion: reduce) {
+  .servico-card:hover { transform: none; box-shadow: none; }
+}
 .servico-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: transparent; transition: background .3s; }
 .servico-card:hover::before { background: var(--laranja); }
 .servico-num { font-family: var(--fonte-titulo); font-size: .72rem; font-weight: 700; letter-spacing: .15em; color: var(--laranja); margin-bottom: 1.8rem; opacity: .7; }
@@ -90,15 +172,20 @@ section { padding: 6rem 5vw; }
 .servico-icone-wrap svg { width: 22px; height: 22px; stroke: var(--laranja); fill: none; stroke-width: 1.5; }
 .servico-titulo { font-family: var(--fonte-titulo); font-size: 1.15rem; font-weight: 700; line-height: 1.2; margin-bottom: .85rem; letter-spacing: -.01em; }
 .servico-desc { font-size: .84rem; line-height: 1.75; color: var(--cinza); }
-.servico-link { display: inline-flex; align-items: center; gap: .5rem; font-size: .73rem; letter-spacing: .1em; text-transform: uppercase; color: var(--laranja); text-decoration: none; margin-top: 1.5rem; transition: gap .2s; }
-.servico-link:hover { gap: .9rem; }
+.servico-link { display: inline-flex; align-items: center; gap: .5rem; font-size: .73rem; letter-spacing: .1em; text-transform: uppercase; color: var(--laranja); text-decoration: none; margin-top: 1.5rem; transition: gap .22s ease; position: relative; padding-bottom: 2px; }
+.servico-link::after { content: ''; position: absolute; left: 0; bottom: 0; width: 0; height: 1px; background: var(--laranja); transition: width .28s ease; }
+@media (prefers-reduced-motion: reduce) {
+  .servico-link::after { transition: none; }
+}
+.servico-link:hover { gap: .85rem; }
+.servico-link:hover::after { width: 100%; }
 .servico-link svg { width: 13px; height: 13px; stroke: var(--laranja); fill: none; stroke-width: 2; }
 
 /* SOBRE */
 #sobre { background: var(--preto); }
 .sobre-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
 .sobre-img-wrap { position: relative; }
-.sobre-img { width: 100%; aspect-ratio: 4/5; background-image: url('https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=900&auto=format&fit=crop&q=80'); background-size: cover; background-position: center; filter: brightness(.8) saturate(.9); border-radius: 2px; }
+.sobre-img { width: 100%; aspect-ratio: 4/5; background-image: url('fotos/Foto%20(2).jpeg'); background-size: cover; background-position: center top; filter: brightness(.9) saturate(.95); border-radius: 2px; }
 .sobre-badge-flutuante { position: absolute; bottom: 2rem; left: -1.5rem; background: var(--laranja); color: #fff; padding: 1.2rem 1.5rem; border-radius: 2px; min-width: 155px; }
 .sbf-valor { font-family: var(--fonte-titulo); font-size: 2.2rem; font-weight: 800; line-height: 1; }
 .sbf-label { font-size: .68rem; letter-spacing: .12em; text-transform: uppercase; opacity: .85; margin-top: .3rem; }
@@ -117,17 +204,36 @@ section { padding: 6rem 5vw; }
 /* PROCESSO */
 #processo { background: var(--escuro); }
 .processo-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--borda); margin-top: 3.5rem; }
-.processo-item { background: var(--card-bg); padding: 2.4rem 2rem; }
+.processo-item { background: var(--card-bg); padding: 2.4rem 2rem; transition: background .25s ease; }
+.processo-item:hover { background: #1c1c1c; }
 .processo-num { font-family: var(--fonte-titulo); font-size: 2.8rem; font-weight: 800; color: rgba(232,98,26,.15); line-height: 1; margin-bottom: 1.4rem; letter-spacing: -.04em; }
 .processo-titulo { font-family: var(--fonte-titulo); font-size: 1.02rem; font-weight: 700; margin-bottom: .7rem; }
 .processo-desc { font-size: .82rem; line-height: 1.75; color: var(--cinza2); }
+
+/* PROJETOS */
+#projetos { background: var(--preto); }
+.projetos-top { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3.2rem; gap: 2rem; flex-wrap: wrap; }
+.projetos-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+.projeto-card { border: 1px solid var(--borda); background: var(--card-bg); overflow: hidden; border-radius: 2px; transition: transform .28s ease, border-color .28s ease, box-shadow .28s ease; }
+.projeto-card:hover { transform: translateY(-4px); border-color: rgba(232,98,26,.45); box-shadow: 0 20px 50px rgba(0,0,0,.38); }
+@media (prefers-reduced-motion: reduce) {
+  .projeto-card:hover { transform: none; box-shadow: none; }
+}
+.projeto-img { height: 200px; background-size: cover; background-position: center; filter: brightness(.78); }
+.projeto-body { padding: 1.4rem 1.3rem 1.5rem; }
+.projeto-tag { display: inline-block; font-size: .65rem; letter-spacing: .12em; text-transform: uppercase; color: var(--laranja); margin-bottom: .8rem; }
+.projeto-titulo { font-family: var(--fonte-titulo); font-size: 1.02rem; margin-bottom: .7rem; }
+.projeto-desc { font-size: .83rem; line-height: 1.7; color: var(--cinza); }
 
 /* DEPOIMENTOS */
 #depoimentos { background: var(--preto); }
 .dep-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3.5rem; gap: 2rem; flex-wrap: wrap; }
 .dep-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px; background: var(--borda); }
-.dep-card { background: var(--card-bg); padding: 2.5rem 2rem; transition: background .3s; }
-.dep-card:hover { background: #1a1a1a; }
+.dep-card { background: var(--card-bg); padding: 2.5rem 2rem; transition: background .3s ease, transform .28s ease, box-shadow .28s ease; border: 1px solid transparent; }
+.dep-card:hover { background: #1a1a1a; transform: translateY(-3px); box-shadow: 0 16px 44px rgba(0,0,0,.32); border-color: rgba(255,255,255,.06); }
+@media (prefers-reduced-motion: reduce) {
+  .dep-card:hover { transform: none; box-shadow: none; }
+}
 .dep-estrelas { display: flex; gap: 3px; margin-bottom: 1.5rem; }
 .estrela { width: 13px; height: 13px; fill: var(--laranja); }
 .dep-texto { font-size: .86rem; line-height: 1.85; color: var(--cinza); margin-bottom: 1.8rem; font-style: italic; }
@@ -158,63 +264,107 @@ textarea.form-input { resize: vertical; min-height: 120px; }
 footer { background: #080808; border-top: 1px solid var(--borda); padding: 2.8rem 5vw; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; }
 .footer-copy { font-size: .76rem; color: rgba(255,255,255,.27); }
 .footer-copy strong { color: rgba(255,255,255,.43); }
+.footer-credit { font-size: .72rem; color: rgba(255,255,255,.22); margin-top: .75rem; }
+.footer-credit a { color: rgba(232,98,26,.55); text-decoration: none; transition: color .2s; }
+.footer-credit a:hover { color: var(--laranja); }
 .footer-direito { font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; color: rgba(232,98,26,.42); }
 
 /* WHATSAPP */
-.whatsapp-float { position: fixed; bottom: 1.8rem; right: 1.8rem; z-index: 300; width: 52px; height: 52px; border-radius: 50%; background: #25D366; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(37,211,102,.4); transition: transform .2s, box-shadow .2s; text-decoration: none; }
+.whatsapp-float { position: fixed; bottom: max(1.2rem, env(safe-area-inset-bottom)); right: max(1rem, env(safe-area-inset-right)); z-index: 300; width: 52px; height: 52px; border-radius: 50%; background: #25D366; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(37,211,102,.4); transition: transform .2s, box-shadow .2s; text-decoration: none; }
 .whatsapp-float:hover { transform: scale(1.08) translateY(-2px); box-shadow: 0 6px 28px rgba(37,211,102,.55); }
+@media (prefers-reduced-motion: reduce) {
+  .whatsapp-float:hover { transform: none; }
+}
 .whatsapp-float svg { width: 26px; height: 26px; fill: #fff; }
 
 /* ANIMAÇÕES */
 @keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
 .reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s ease; }
 .reveal.visible { opacity: 1; transform: translateY(0); }
+@media (prefers-reduced-motion: reduce) {
+  .hero-content { animation: none !important; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .reveal.visible { opacity: 1; transform: none; }
+}
 
 /* RESPONSIVO */
 @media (max-width: 960px) {
   .nav-links, .nav-cta { display: none; }
-  .hamburger { display: flex; }
+  .hamburger {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    min-height: 44px;
+    flex-shrink: 0;
+  }
   .sobre-grid, .contato-grid { grid-template-columns: 1fr; gap: 3rem; }
   .servicos-grid { grid-template-columns: 1fr; }
   .dep-grid { grid-template-columns: 1fr; }
+  .projetos-grid { grid-template-columns: 1fr; }
+  .hero-trust { grid-template-columns: repeat(2, minmax(120px, 1fr)); }
   .stats-grid { grid-template-columns: repeat(2, 1fr); }
   .processo-grid { grid-template-columns: repeat(2, 1fr); }
   .sobre-badge-flutuante { left: 0; }
 }
 @media (max-width: 560px) {
-  section { padding: 4.5rem 5vw; }
+  section { padding: 4.5rem max(5vw, env(safe-area-inset-left)) 4.5rem max(5vw, env(safe-area-inset-right)); }
+  #hero {
+    padding-top: max(6.5rem, calc(env(safe-area-inset-top) + 5rem));
+    padding-left: max(1.1rem, env(safe-area-inset-left));
+    padding-right: max(1.1rem, env(safe-area-inset-right));
+    padding-bottom: max(2.5rem, env(safe-area-inset-bottom));
+  }
   .stats-grid { grid-template-columns: 1fr 1fr; }
   .processo-grid { grid-template-columns: 1fr; }
   .form-row { grid-template-columns: 1fr; }
-  .hero-titulo { font-size: 2.3rem; }
+  .hero-titulo { font-size: 1.65rem; line-height: 1.18; }
+  .hero-desc { font-size: .88rem; }
+  .hero-trust { grid-template-columns: 1fr; max-width: 100%; gap: .65rem; }
+  .hero-trust-item { padding: .75rem .85rem; }
+  .btn-laranja, .btn-ghost { min-height: 46px; padding-top: .9rem; padding-bottom: .9rem; }
+  .logo-img { height: 40px; max-width: 50vw; }
+  .logo-img--footer { height: 46px; max-width: 85vw; }
   footer { flex-direction: column; align-items: flex-start; }
+  input.form-input, select.form-input, textarea.form-input { font-size: 16px; }
+  .servico-card, .projeto-card, .dep-card { transition: background .25s ease, border-color .25s ease; }
 }
 </style>
 </head>
 <body>
 
+<!-- SPLASH -->
+<div id="splash" role="dialog" aria-modal="true" aria-label="Abertura Mezani Engenharia">
+  <div class="splash-inner">
+    <img src="logo/logo-mezani-1.png" alt="Mezani Engenharia e Serviços" class="splash-logo" width="260" height="120" />
+    <div class="splash-line" aria-hidden="true"></div>
+    <p class="splash-tagline">Engenharia e serviços para o seu imóvel</p>
+  </div>
+</div>
+
 <!-- NAV -->
 <nav id="navbar">
   <div class="logo-wrap">
-    <div class="logo-icon">
-      <svg viewBox="0 0 24 24"><path d="M3 21h18M3 7l9-4 9 4M4 21V7M20 21V7M8 21v-4h8v4"/></svg>
-    </div>
-    <div class="logo-texto">MEZANI <span>ENG.</span></div>
+    <a href="#hero" class="logo-link" aria-label="Mezani Engenharia — início">
+      <img src="logo/logo-mezani-1.png" alt="Mezani Engenharia e Serviços" class="logo-img" width="200" height="92" />
+    </a>
   </div>
   <ul class="nav-links">
     <li><a href="#servicos">Serviços</a></li>
+    <li><a href="#projetos">Projetos</a></li>
     <li><a href="#sobre">Sobre</a></li>
     <li><a href="#processo">Processo</a></li>
     <li><a href="#depoimentos">Clientes</a></li>
   </ul>
   <a href="#contato" class="nav-cta">Iniciar Projeto ↗</a>
-  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+  <button type="button" class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobileMenu">
     <span></span><span></span><span></span>
-  </div>
+  </button>
 </nav>
 
-<div class="mobile-menu" id="mobileMenu">
+<div class="mobile-menu" id="mobileMenu" role="navigation" aria-label="Menu principal">
   <a href="#servicos" onclick="toggleMenu()">Serviços</a>
+  <a href="#projetos" onclick="toggleMenu()">Projetos</a>
   <a href="#sobre" onclick="toggleMenu()">Sobre</a>
   <a href="#processo" onclick="toggleMenu()">Processo</a>
   <a href="#depoimentos" onclick="toggleMenu()">Clientes</a>
@@ -226,23 +376,33 @@ footer { background: #080808; border-top: 1px solid var(--borda); padding: 2.8re
   <div class="hero-bg-img"></div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <div class="hero-badges">
-      <div class="badge"><span class="badge-dot"></span>Engenharia Inteligente</div>
-      <div class="badge"><span class="badge-dot"></span>Alta Performance</div>
-    </div>
     <h1 class="hero-titulo">
-      Planejar com técnica,<br>
-      construir com <span class="destaque">propósito.</span>
+      Engenharia para <span class="destaque">valorizar</span><br>
+      e regularizar seu imóvel.
     </h1>
     <p class="hero-desc">
-      Projetos desenvolvidos com precisão, performance e responsabilidade técnica. Da concepção à entrega — cada detalhe importa.
+      Soluções completas em projetos, regularização e gestão de obras com atendimento técnico, clareza no processo e foco em resultado real para o seu patrimônio.
     </p>
     <div class="hero-btns">
       <a href="#contato" class="btn-laranja">
-        Iniciar um projeto
+        Solicitar orçamento
         <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
-      <a href="#servicos" class="btn-ghost">Ver serviços</a>
+      <a href="#processo" class="btn-ghost">Como funciona</a>
+    </div>
+    <div class="hero-trust">
+      <div class="hero-trust-item">
+        <span class="hero-trust-num">3 frentes</span>
+        <span class="hero-trust-label">Projeto, obra e regularizacao</span>
+      </div>
+      <div class="hero-trust-item">
+        <span class="hero-trust-num">Atendimento MG</span>
+        <span class="hero-trust-label">Suporte em todo o estado</span>
+      </div>
+      <div class="hero-trust-item">
+        <span class="hero-trust-num">100% tecnico</span>
+        <span class="hero-trust-label">Responsabilidade e conformidade</span>
+      </div>
     </div>
   </div>
   <div class="hero-scroll">
@@ -256,10 +416,10 @@ footer { background: #080808; border-top: 1px solid var(--borda); padding: 2.8re
   <div class="servicos-top">
     <div class="reveal">
       <div class="secao-label">Serviços</div>
-      <h2 class="secao-titulo">Soluções de <em>engenharia</em><br>para o seu imóvel</h2>
+      <h2 class="secao-titulo">Do estudo inicial a entrega,<br>com <em>engenharia aplicada</em></h2>
     </div>
     <p class="secao-desc reveal" style="transition-delay:.1s; max-width:280px; margin:0;">
-      Atendimento completo do projeto à regularização.
+      Escopo claro, acompanhamento técnico e execução com previsibilidade.
     </p>
   </div>
   <div class="servicos-grid reveal" style="transition-delay:.15s;">
@@ -314,17 +474,17 @@ footer { background: #080808; border-top: 1px solid var(--borda); padding: 2.8re
     </div>
     <div class="sobre-texto reveal" style="transition-delay:.15s;">
       <div class="secao-label">Quem Somos</div>
-      <h2 class="secao-titulo">Simplificando a engenharia<br>para <em>valorizar</em> seu patrimônio</h2>
-      <p>A Mezani Engenharia e Serviços nasce com o propósito de oferecer soluções completas em engenharia civil para imóveis residenciais, com foco em projetos, regularização de edificações e administração de obras.</p>
-      <p>Trabalhamos com planejamento técnico, responsabilidade e atenção aos detalhes, acompanhando cada etapa — da concepção à execução — sempre buscando segurança, conformidade legal e valorização do patrimônio.</p>
+      <h2 class="secao-titulo">Planejamento técnico com visão<br>de <em>negócio e patrimônio</em></h2>
+      <p>A Mezani Engenharia e Serviços atua para tornar decisões de obra e regularização mais seguras, objetivas e financeiramente inteligentes para proprietários de imóveis.</p>
+      <p>Nosso trabalho combina análise técnica, organização de etapas e comunicação clara, reduzindo riscos de retrabalho e acelerando a tomada de decisão em cada fase do projeto.</p>
       <ul class="sobre-lista">
-        <li>Planejamento técnico do início ao fim</li>
-        <li>Soluções práticas, eficientes e personalizadas</li>
-        <li>Conformidade com normas e legislação vigente</li>
-        <li>Comprometimento com qualidade, ética e excelência</li>
+        <li>Escopo definido e alinhado antes do inicio</li>
+        <li>Priorizacao de prazo, custo e qualidade</li>
+        <li>Conformidade com normas tecnicas e legislacao</li>
+        <li>Relacao transparente em todo o processo</li>
       </ul>
       <a href="#contato" class="btn-laranja" style="display:inline-flex;">
-        Fale com um engenheiro
+        Falar com especialista
         <svg viewBox="0 0 24 24" style="width:15px;height:15px;fill:none;stroke:#fff;stroke-width:2;"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
     </div>
@@ -341,10 +501,49 @@ footer { background: #080808; border-top: 1px solid var(--borda); padding: 2.8re
   </div>
 </section>
 
+<!-- PROJETOS -->
+<section id="projetos">
+  <div class="projetos-top">
+    <div>
+      <div class="secao-label reveal">Projetos</div>
+      <h2 class="secao-titulo reveal" style="transition-delay:.08s;">Resultados que demonstram<br>nosso <em>padrao tecnico</em></h2>
+    </div>
+    <p class="secao-desc reveal" style="transition-delay:.14s; max-width:360px; margin:0;">
+      Exemplos de demandas recorrentes atendidas pela Mezani com foco em conformidade, seguranca e valorizacao do imovel.
+    </p>
+  </div>
+  <div class="projetos-grid">
+    <article class="projeto-card reveal">
+      <div class="projeto-img" style="background-image:url('https://images.unsplash.com/photo-1531834685032-c34bf0d84c77?w=1200&auto=format&fit=crop&q=80');"></div>
+      <div class="projeto-body">
+        <span class="projeto-tag">Regularizacao</span>
+        <h3 class="projeto-titulo">Regularizacao de residencia unifamiliar</h3>
+        <p class="projeto-desc">Levantamento tecnico, documentacao e suporte junto aos orgaos municipais para conclusao segura do processo.</p>
+      </div>
+    </article>
+    <article class="projeto-card reveal" style="transition-delay:.1s;">
+      <div class="projeto-img" style="background-image:url('https://images.unsplash.com/photo-1489515217757-5fd1be406fef?w=1200&auto=format&fit=crop&q=80');"></div>
+      <div class="projeto-body">
+        <span class="projeto-tag">Projeto Executivo</span>
+        <h3 class="projeto-titulo">Projeto tecnico para reforma residencial</h3>
+        <p class="projeto-desc">Compatibilizacao de disciplinas para orientar a obra, reduzir retrabalho e aumentar a previsibilidade da execucao.</p>
+      </div>
+    </article>
+    <article class="projeto-card reveal" style="transition-delay:.2s;">
+      <div class="projeto-img" style="background-image:url('https://images.unsplash.com/photo-1429497419816-9ca5cfb4571a?w=1200&auto=format&fit=crop&q=80');"></div>
+      <div class="projeto-body">
+        <span class="projeto-tag">Gestao de Obra</span>
+        <h3 class="projeto-titulo">Acompanhamento tecnico de execucao</h3>
+        <p class="projeto-desc">Controle de etapas, apoio em decisoes e monitoramento da qualidade para manter o cronograma dentro do planejado.</p>
+      </div>
+    </article>
+  </div>
+</section>
+
 <!-- PROCESSO -->
 <section id="processo">
   <div class="secao-label reveal">Como Trabalhamos</div>
-  <h2 class="secao-titulo reveal" style="transition-delay:.08s;">Nosso <em>processo</em></h2>
+  <h2 class="secao-titulo reveal" style="transition-delay:.08s;">Um metodo claro para seu <em>projeto evoluir</em></h2>
   <div class="processo-grid">
     <div class="processo-item reveal"><div class="processo-num">01</div><h3 class="processo-titulo">Diagnóstico Inicial</h3><p class="processo-desc">Reunião para entender suas necessidades, o imóvel e os objetivos do projeto ou regularização.</p></div>
     <div class="processo-item reveal" style="transition-delay:.08s;"><div class="processo-num">02</div><h3 class="processo-titulo">Proposta Técnica</h3><p class="processo-desc">Elaboração de proposta com escopo, cronograma e investimento detalhado para sua aprovação.</p></div>
@@ -445,11 +644,13 @@ footer { background: #080808; border-top: 1px solid var(--borda); padding: 2.8re
 <!-- FOOTER -->
 <footer>
   <div>
-    <div class="logo-wrap" style="margin-bottom:.5rem;">
-      <div class="logo-icon"><svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:#fff;"><path d="M3 21h18M3 7l9-4 9 4M4 21V7M20 21V7M8 21v-4h8v4"/></svg></div>
-      <div class="logo-texto" style="font-size:.95rem;">MEZANI <span>ENG.</span></div>
+    <div class="logo-wrap" style="margin-bottom:.85rem;">
+      <a href="#hero" class="logo-link" aria-label="Mezani Engenharia — início">
+        <img src="logo/logo-mezani-1.png" alt="" class="logo-img logo-img--footer" width="200" height="92" />
+      </a>
     </div>
-    <p class="footer-copy">© 2025 Mezani Engenharia e Serviços. <strong>Todos os direitos reservados.</strong></p>
+    <p class="footer-copy">© 2026 Mezani Engenharia e Serviços. <strong>Todos os direitos reservados.</strong></p>
+    <p class="footer-credit">Desenvolvido por <a href="https://mvlopes.com.br/" target="_blank" rel="noopener noreferrer">MVLOPES</a></p>
   </div>
   <div class="footer-direito">Engenharia Civil · Minas Gerais</div>
 </footer>
@@ -460,18 +661,53 @@ footer { background: #080808; border-top: 1px solid var(--borda); padding: 2.8re
 </a>
 
 <script>
+(function initSplash() {
+  const splash = document.getElementById('splash');
+  if (!splash) return;
+  function dismissSplash() {
+    if (splash.classList.contains('splash--done')) return;
+    splash.classList.add('splash--done');
+    document.body.classList.remove('splash-lock');
+    splash.setAttribute('aria-hidden', 'true');
+    try { sessionStorage.setItem('mezaniSplashSeen', '1'); } catch (e) {}
+  }
+  try {
+    if (sessionStorage.getItem('mezaniSplashSeen') === '1') {
+      dismissSplash();
+      return;
+    }
+  } catch (e) {}
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const delayMs = reduceMotion ? 1200 : 4500;
+  document.body.classList.add('splash-lock');
+  splash.addEventListener('click', function (e) {
+    if (e.target === splash) dismissSplash();
+  });
+  window.setTimeout(dismissSplash, delayMs);
+})();
 function toggleMenu() {
-  document.getElementById('hamburger').classList.toggle('open');
-  document.getElementById('mobileMenu').classList.toggle('open');
+  const hamburger = document.getElementById('hamburger');
+  const menu = document.getElementById('mobileMenu');
+  hamburger.classList.toggle('open');
+  menu.classList.toggle('open');
+  const open = menu.classList.contains('open');
+  hamburger.setAttribute('aria-expanded', open ? 'true' : 'false');
+  hamburger.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
+  document.body.classList.toggle('menu-open', open);
 }
 const reveals = document.querySelectorAll('.reveal');
 const observer = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
 }, { threshold: 0.1 });
 reveals.forEach(el => observer.observe(el));
-window.addEventListener('scroll', () => {
-  document.getElementById('navbar').style.background = window.scrollY > 50 ? 'rgba(10,10,10,.98)' : 'rgba(10,10,10,.75)';
-});
+function updateNavbar() {
+  const nav = document.getElementById('navbar');
+  const y = window.scrollY;
+  nav.style.background = y > 50 ? 'rgba(10,10,10,.98)' : 'rgba(10,10,10,.75)';
+  nav.classList.toggle('nav--scrolled', y > 50);
+}
+window.addEventListener('scroll', updateNavbar);
+updateNavbar();
 </script>
 </body>
 </html>
