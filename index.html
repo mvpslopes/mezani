@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mezani Engenharia e Serviços</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --preto: #0a0a0a;
+  --escuro: #111111;
+  --card-bg: #161616;
+  --laranja: #e8621a;
+  --laranja-hover: #f07234;
+  --branco: #ffffff;
+  --cinza: rgba(255,255,255,0.55);
+  --cinza2: rgba(255,255,255,0.35);
+  --borda: rgba(255,255,255,0.08);
+  --fonte-titulo: 'Syne', sans-serif;
+  --fonte-corpo: 'Inter', sans-serif;
+}
+html { scroll-behavior: smooth; }
+body { font-family: var(--fonte-corpo); background: var(--preto); color: var(--branco); overflow-x: hidden; }
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.2rem 5vw;
+  background: rgba(10,10,10,0.75); backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--borda); transition: background .3s;
+}
+.logo-wrap { display: flex; align-items: center; gap: .7rem; }
+.logo-icon { width: 32px; height: 32px; background: var(--laranja); display: flex; align-items: center; justify-content: center; }
+.logo-icon svg { width: 18px; height: 18px; fill: #fff; }
+.logo-texto { font-family: var(--fonte-titulo); font-size: 1.05rem; font-weight: 700; letter-spacing: .04em; }
+.logo-texto span { color: var(--laranja); }
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a { font-size: .78rem; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.65); text-decoration: none; transition: color .2s; }
+.nav-links a:hover { color: #fff; }
+.nav-cta { background: var(--laranja); color: #fff; border: none; font-family: var(--fonte-corpo); font-size: .76rem; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; padding: .6rem 1.4rem; cursor: pointer; text-decoration: none; transition: background .2s; border-radius: 2px; }
+.nav-cta:hover { background: var(--laranja-hover); }
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+.hamburger span { display: block; width: 22px; height: 1.5px; background: #fff; transition: all .3s; }
+.hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+.mobile-menu { display: none; position: fixed; top: 62px; left: 0; right: 0; background: rgba(10,10,10,.97); backdrop-filter: blur(16px); padding: 2rem 5vw; flex-direction: column; gap: 1.3rem; z-index: 199; border-bottom: 1px solid var(--borda); }
+.mobile-menu.open { display: flex; }
+.mobile-menu a { font-size: .85rem; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.75); text-decoration: none; padding-bottom: 1rem; border-bottom: 1px solid var(--borda); }
+
+/* HERO */
+#hero { min-height: 100vh; position: relative; display: flex; align-items: center; padding: 0 5vw; overflow: hidden; }
+.hero-bg-img { position: absolute; inset: 0; background-image: url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1800&auto=format&fit=crop&q=80'); background-size: cover; background-position: center 40%; filter: brightness(.42) saturate(1.1); }
+.hero-overlay { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(10,10,10,.9) 38%, rgba(10,10,10,.15) 100%); }
+.hero-content { position: relative; z-index: 2; max-width: 680px; animation: fadeUp .9s ease both; }
+.hero-badges { display: flex; gap: .8rem; margin-bottom: 2rem; flex-wrap: wrap; }
+.badge { display: inline-flex; align-items: center; gap: .5rem; font-size: .68rem; letter-spacing: .15em; text-transform: uppercase; color: rgba(255,255,255,.5); padding: .4rem .9rem; border: 1px solid var(--borda); border-radius: 100px; }
+.badge-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--laranja); }
+.hero-titulo { font-family: var(--fonte-titulo); font-size: clamp(2.5rem, 5.2vw, 4.8rem); font-weight: 800; line-height: 1.06; letter-spacing: -.02em; margin-bottom: 1.4rem; }
+.hero-titulo .destaque { color: var(--laranja); }
+.hero-desc { font-size: .97rem; line-height: 1.75; color: rgba(255,255,255,.58); max-width: 460px; margin-bottom: 2.4rem; }
+.hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+.btn-laranja { display: inline-flex; align-items: center; gap: .6rem; background: var(--laranja); color: #fff; font-family: var(--fonte-corpo); font-size: .8rem; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; padding: .85rem 1.7rem; text-decoration: none; border-radius: 2px; transition: background .2s, transform .15s; }
+.btn-laranja:hover { background: var(--laranja-hover); transform: translateY(-2px); }
+.btn-laranja svg { width: 15px; height: 15px; fill: none; stroke: #fff; stroke-width: 2; }
+.btn-ghost { display: inline-flex; align-items: center; gap: .6rem; background: transparent; color: rgba(255,255,255,.75); font-family: var(--fonte-corpo); font-size: .8rem; letter-spacing: .06em; text-transform: uppercase; padding: .85rem 1.7rem; text-decoration: none; border: 1px solid rgba(255,255,255,.2); border-radius: 2px; transition: border-color .2s, color .2s; }
+.btn-ghost:hover { border-color: rgba(255,255,255,.5); color: #fff; }
+.hero-scroll { position: absolute; bottom: 2.5rem; left: 5vw; z-index: 2; display: flex; align-items: center; gap: .8rem; font-size: .68rem; letter-spacing: .15em; text-transform: uppercase; color: rgba(255,255,255,.3); }
+.scroll-line { width: 36px; height: 1px; background: rgba(255,255,255,.18); }
+
+/* SEÇÕES */
+section { padding: 6rem 5vw; }
+.secao-label { display: inline-block; font-size: .67rem; letter-spacing: .22em; text-transform: uppercase; color: var(--laranja); margin-bottom: .9rem; padding: .32rem .9rem; border: 1px solid rgba(232,98,26,.3); border-radius: 100px; }
+.secao-titulo { font-family: var(--fonte-titulo); font-size: clamp(1.8rem, 3.2vw, 2.8rem); font-weight: 700; line-height: 1.12; letter-spacing: -.02em; margin-bottom: 1rem; }
+.secao-titulo em { font-style: normal; color: var(--laranja); }
+.secao-desc { font-size: .93rem; line-height: 1.8; color: var(--cinza); max-width: 500px; }
+
+/* SERVIÇOS */
+#servicos { background: var(--escuro); }
+.servicos-top { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3.5rem; gap: 2rem; flex-wrap: wrap; }
+.servicos-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px; background: var(--borda); }
+.servico-card { background: var(--card-bg); padding: 2.8rem 2.2rem; position: relative; overflow: hidden; transition: background .3s; }
+.servico-card:hover { background: #1d1d1d; }
+.servico-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: transparent; transition: background .3s; }
+.servico-card:hover::before { background: var(--laranja); }
+.servico-num { font-family: var(--fonte-titulo); font-size: .72rem; font-weight: 700; letter-spacing: .15em; color: var(--laranja); margin-bottom: 1.8rem; opacity: .7; }
+.servico-icone-wrap { width: 50px; height: 50px; background: rgba(232,98,26,.1); border: 1px solid rgba(232,98,26,.2); display: flex; align-items: center; justify-content: center; margin-bottom: 1.8rem; border-radius: 4px; }
+.servico-icone-wrap svg { width: 22px; height: 22px; stroke: var(--laranja); fill: none; stroke-width: 1.5; }
+.servico-titulo { font-family: var(--fonte-titulo); font-size: 1.15rem; font-weight: 700; line-height: 1.2; margin-bottom: .85rem; letter-spacing: -.01em; }
+.servico-desc { font-size: .84rem; line-height: 1.75; color: var(--cinza); }
+.servico-link { display: inline-flex; align-items: center; gap: .5rem; font-size: .73rem; letter-spacing: .1em; text-transform: uppercase; color: var(--laranja); text-decoration: none; margin-top: 1.5rem; transition: gap .2s; }
+.servico-link:hover { gap: .9rem; }
+.servico-link svg { width: 13px; height: 13px; stroke: var(--laranja); fill: none; stroke-width: 2; }
+
+/* SOBRE */
+#sobre { background: var(--preto); }
+.sobre-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+.sobre-img-wrap { position: relative; }
+.sobre-img { width: 100%; aspect-ratio: 4/5; background-image: url('https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=900&auto=format&fit=crop&q=80'); background-size: cover; background-position: center; filter: brightness(.8) saturate(.9); border-radius: 2px; }
+.sobre-badge-flutuante { position: absolute; bottom: 2rem; left: -1.5rem; background: var(--laranja); color: #fff; padding: 1.2rem 1.5rem; border-radius: 2px; min-width: 155px; }
+.sbf-valor { font-family: var(--fonte-titulo); font-size: 2.2rem; font-weight: 800; line-height: 1; }
+.sbf-label { font-size: .68rem; letter-spacing: .12em; text-transform: uppercase; opacity: .85; margin-top: .3rem; }
+.sobre-texto p { font-size: .93rem; line-height: 1.85; color: var(--cinza); margin-bottom: 1.1rem; }
+.sobre-lista { list-style: none; margin: 1.5rem 0 2rem; display: flex; flex-direction: column; gap: .85rem; }
+.sobre-lista li { display: flex; align-items: center; gap: .9rem; font-size: .86rem; color: rgba(255,255,255,.7); }
+.sobre-lista li::before { content: ''; display: flex; flex-shrink: 0; width: 20px; height: 20px; background: rgba(232,98,26,.12) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 6l3 3 5-5' stroke='%23e8621a' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat center / 10px; border: 1px solid rgba(232,98,26,.25); border-radius: 50%; }
+
+/* STATS */
+#diferenciais { background: var(--laranja); padding: 4rem 5vw; }
+.stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; background: rgba(0,0,0,.12); }
+.stat-item { background: var(--laranja); padding: 2.5rem 2rem; text-align: center; }
+.stat-valor { font-family: var(--fonte-titulo); font-size: 3rem; font-weight: 800; line-height: 1; color: #fff; letter-spacing: -.03em; }
+.stat-label { font-size: .72rem; letter-spacing: .15em; text-transform: uppercase; color: rgba(255,255,255,.75); margin-top: .5rem; }
+
+/* PROCESSO */
+#processo { background: var(--escuro); }
+.processo-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--borda); margin-top: 3.5rem; }
+.processo-item { background: var(--card-bg); padding: 2.4rem 2rem; }
+.processo-num { font-family: var(--fonte-titulo); font-size: 2.8rem; font-weight: 800; color: rgba(232,98,26,.15); line-height: 1; margin-bottom: 1.4rem; letter-spacing: -.04em; }
+.processo-titulo { font-family: var(--fonte-titulo); font-size: 1.02rem; font-weight: 700; margin-bottom: .7rem; }
+.processo-desc { font-size: .82rem; line-height: 1.75; color: var(--cinza2); }
+
+/* DEPOIMENTOS */
+#depoimentos { background: var(--preto); }
+.dep-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3.5rem; gap: 2rem; flex-wrap: wrap; }
+.dep-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px; background: var(--borda); }
+.dep-card { background: var(--card-bg); padding: 2.5rem 2rem; transition: background .3s; }
+.dep-card:hover { background: #1a1a1a; }
+.dep-estrelas { display: flex; gap: 3px; margin-bottom: 1.5rem; }
+.estrela { width: 13px; height: 13px; fill: var(--laranja); }
+.dep-texto { font-size: .86rem; line-height: 1.85; color: var(--cinza); margin-bottom: 1.8rem; font-style: italic; }
+.dep-autor { display: flex; align-items: center; gap: .9rem; }
+.dep-avatar { width: 38px; height: 38px; border-radius: 50%; background: rgba(232,98,26,.12); border: 1px solid rgba(232,98,26,.3); display: flex; align-items: center; justify-content: center; font-family: var(--fonte-titulo); font-size: .82rem; font-weight: 700; color: var(--laranja); flex-shrink: 0; }
+.dep-nome { font-size: .86rem; font-weight: 500; }
+.dep-cidade { font-size: .73rem; color: var(--cinza2); margin-top: 1px; }
+
+/* CONTATO */
+#contato { background: var(--escuro); }
+.contato-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 5rem; align-items: start; }
+.contato-info-items { display: flex; flex-direction: column; gap: 1.2rem; margin-top: 2.5rem; }
+.ci-item { display: flex; align-items: flex-start; gap: 1rem; padding: 1.2rem; border: 1px solid var(--borda); border-radius: 4px; transition: border-color .2s; }
+.ci-item:hover { border-color: rgba(232,98,26,.3); }
+.ci-icone { width: 38px; height: 38px; flex-shrink: 0; background: rgba(232,98,26,.1); border: 1px solid rgba(232,98,26,.2); display: flex; align-items: center; justify-content: center; border-radius: 4px; }
+.ci-icone svg { width: 17px; height: 17px; stroke: var(--laranja); fill: none; stroke-width: 1.5; }
+.ci-label { font-size: .67rem; letter-spacing: .15em; text-transform: uppercase; color: var(--laranja); margin-bottom: 3px; }
+.ci-valor { font-size: .88rem; color: rgba(255,255,255,.75); }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.form-grupo { margin-bottom: 1.1rem; }
+.form-label { display: block; font-size: .67rem; letter-spacing: .15em; text-transform: uppercase; color: rgba(255,255,255,.38); margin-bottom: .42rem; }
+.form-input { width: 100%; background: rgba(255,255,255,.04); border: 1px solid var(--borda); color: var(--branco); font-family: var(--fonte-corpo); font-size: .86rem; padding: .78rem 1rem; outline: none; border-radius: 3px; transition: border-color .2s; appearance: none; }
+.form-input:focus { border-color: var(--laranja); }
+.form-input::placeholder { color: rgba(255,255,255,.17); }
+textarea.form-input { resize: vertical; min-height: 120px; }
+
+/* FOOTER */
+footer { background: #080808; border-top: 1px solid var(--borda); padding: 2.8rem 5vw; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; }
+.footer-copy { font-size: .76rem; color: rgba(255,255,255,.27); }
+.footer-copy strong { color: rgba(255,255,255,.43); }
+.footer-direito { font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; color: rgba(232,98,26,.42); }
+
+/* WHATSAPP */
+.whatsapp-float { position: fixed; bottom: 1.8rem; right: 1.8rem; z-index: 300; width: 52px; height: 52px; border-radius: 50%; background: #25D366; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(37,211,102,.4); transition: transform .2s, box-shadow .2s; text-decoration: none; }
+.whatsapp-float:hover { transform: scale(1.08) translateY(-2px); box-shadow: 0 6px 28px rgba(37,211,102,.55); }
+.whatsapp-float svg { width: 26px; height: 26px; fill: #fff; }
+
+/* ANIMAÇÕES */
+@keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+.reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* RESPONSIVO */
+@media (max-width: 960px) {
+  .nav-links, .nav-cta { display: none; }
+  .hamburger { display: flex; }
+  .sobre-grid, .contato-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .servicos-grid { grid-template-columns: 1fr; }
+  .dep-grid { grid-template-columns: 1fr; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .processo-grid { grid-template-columns: repeat(2, 1fr); }
+  .sobre-badge-flutuante { left: 0; }
+}
+@media (max-width: 560px) {
+  section { padding: 4.5rem 5vw; }
+  .stats-grid { grid-template-columns: 1fr 1fr; }
+  .processo-grid { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+  .hero-titulo { font-size: 2.3rem; }
+  footer { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="logo-wrap">
+    <div class="logo-icon">
+      <svg viewBox="0 0 24 24"><path d="M3 21h18M3 7l9-4 9 4M4 21V7M20 21V7M8 21v-4h8v4"/></svg>
+    </div>
+    <div class="logo-texto">MEZANI <span>ENG.</span></div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#servicos">Serviços</a></li>
+    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#processo">Processo</a></li>
+    <li><a href="#depoimentos">Clientes</a></li>
+  </ul>
+  <a href="#contato" class="nav-cta">Iniciar Projeto ↗</a>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#servicos" onclick="toggleMenu()">Serviços</a>
+  <a href="#sobre" onclick="toggleMenu()">Sobre</a>
+  <a href="#processo" onclick="toggleMenu()">Processo</a>
+  <a href="#depoimentos" onclick="toggleMenu()">Clientes</a>
+  <a href="#contato" onclick="toggleMenu()">Contato</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg-img"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badges">
+      <div class="badge"><span class="badge-dot"></span>Engenharia Inteligente</div>
+      <div class="badge"><span class="badge-dot"></span>Alta Performance</div>
+    </div>
+    <h1 class="hero-titulo">
+      Planejar com técnica,<br>
+      construir com <span class="destaque">propósito.</span>
+    </h1>
+    <p class="hero-desc">
+      Projetos desenvolvidos com precisão, performance e responsabilidade técnica. Da concepção à entrega — cada detalhe importa.
+    </p>
+    <div class="hero-btns">
+      <a href="#contato" class="btn-laranja">
+        Iniciar um projeto
+        <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="#servicos" class="btn-ghost">Ver serviços</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    Role para explorar
+  </div>
+</section>
+
+<!-- SERVIÇOS -->
+<section id="servicos">
+  <div class="servicos-top">
+    <div class="reveal">
+      <div class="secao-label">Serviços</div>
+      <h2 class="secao-titulo">Soluções de <em>engenharia</em><br>para o seu imóvel</h2>
+    </div>
+    <p class="secao-desc reveal" style="transition-delay:.1s; max-width:280px; margin:0;">
+      Atendimento completo do projeto à regularização.
+    </p>
+  </div>
+  <div class="servicos-grid reveal" style="transition-delay:.15s;">
+    <div class="servico-card">
+      <div class="servico-num">01</div>
+      <div class="servico-icone-wrap">
+        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+      </div>
+      <h3 class="servico-titulo">Projetos de Engenharia</h3>
+      <p class="servico-desc">Elaboração de projetos estruturais, hidrossanitários e complementares para obras residenciais, com rigor técnico e conformidade às normas ABNT.</p>
+      <a href="#contato" class="servico-link">
+        Solicitar proposta
+        <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+    <div class="servico-card">
+      <div class="servico-num">02</div>
+      <div class="servico-icone-wrap">
+        <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
+      </div>
+      <h3 class="servico-titulo">Regularização de Edificações</h3>
+      <p class="servico-desc">Assessoria completa para regularização de imóveis junto à prefeitura e cartórios — habite-se, averbação e conformidade com a legislação municipal.</p>
+      <a href="#contato" class="servico-link">
+        Solicitar proposta
+        <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+    <div class="servico-card">
+      <div class="servico-num">03</div>
+      <div class="servico-icone-wrap">
+        <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+      </div>
+      <h3 class="servico-titulo">Administração de Obras</h3>
+      <p class="servico-desc">Gestão técnica e administrativa de obras residenciais — cronograma, orçamento, qualidade de execução e coordenação de equipes do início ao fim.</p>
+      <a href="#contato" class="servico-link">
+        Solicitar proposta
+        <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE -->
+<section id="sobre">
+  <div class="sobre-grid">
+    <div class="sobre-img-wrap reveal">
+      <div class="sobre-img"></div>
+      <div class="sobre-badge-flutuante">
+        <div class="sbf-valor">100%</div>
+        <div class="sbf-label">Responsabilidade Técnica</div>
+      </div>
+    </div>
+    <div class="sobre-texto reveal" style="transition-delay:.15s;">
+      <div class="secao-label">Quem Somos</div>
+      <h2 class="secao-titulo">Simplificando a engenharia<br>para <em>valorizar</em> seu patrimônio</h2>
+      <p>A Mezani Engenharia e Serviços nasce com o propósito de oferecer soluções completas em engenharia civil para imóveis residenciais, com foco em projetos, regularização de edificações e administração de obras.</p>
+      <p>Trabalhamos com planejamento técnico, responsabilidade e atenção aos detalhes, acompanhando cada etapa — da concepção à execução — sempre buscando segurança, conformidade legal e valorização do patrimônio.</p>
+      <ul class="sobre-lista">
+        <li>Planejamento técnico do início ao fim</li>
+        <li>Soluções práticas, eficientes e personalizadas</li>
+        <li>Conformidade com normas e legislação vigente</li>
+        <li>Comprometimento com qualidade, ética e excelência</li>
+      </ul>
+      <a href="#contato" class="btn-laranja" style="display:inline-flex;">
+        Fale com um engenheiro
+        <svg viewBox="0 0 24 24" style="width:15px;height:15px;fill:none;stroke:#fff;stroke-width:2;"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section id="diferenciais">
+  <div class="stats-grid">
+    <div class="stat-item reveal"><div class="stat-valor">3</div><div class="stat-label">Serviços Principais</div></div>
+    <div class="stat-item reveal" style="transition-delay:.08s;"><div class="stat-valor">100%</div><div class="stat-label">Responsabilidade Técnica</div></div>
+    <div class="stat-item reveal" style="transition-delay:.16s;"><div class="stat-valor">MG</div><div class="stat-label">Minas Gerais</div></div>
+    <div class="stat-item reveal" style="transition-delay:.24s;"><div class="stat-valor">∞</div><div class="stat-label">Comprometimento</div></div>
+  </div>
+</section>
+
+<!-- PROCESSO -->
+<section id="processo">
+  <div class="secao-label reveal">Como Trabalhamos</div>
+  <h2 class="secao-titulo reveal" style="transition-delay:.08s;">Nosso <em>processo</em></h2>
+  <div class="processo-grid">
+    <div class="processo-item reveal"><div class="processo-num">01</div><h3 class="processo-titulo">Diagnóstico Inicial</h3><p class="processo-desc">Reunião para entender suas necessidades, o imóvel e os objetivos do projeto ou regularização.</p></div>
+    <div class="processo-item reveal" style="transition-delay:.08s;"><div class="processo-num">02</div><h3 class="processo-titulo">Proposta Técnica</h3><p class="processo-desc">Elaboração de proposta com escopo, cronograma e investimento detalhado para sua aprovação.</p></div>
+    <div class="processo-item reveal" style="transition-delay:.16s;"><div class="processo-num">03</div><h3 class="processo-titulo">Execução e Acompanhamento</h3><p class="processo-desc">Desenvolvimento do projeto ou gestão da obra com relatórios periódicos de progresso.</p></div>
+    <div class="processo-item reveal" style="transition-delay:.24s;"><div class="processo-num">04</div><h3 class="processo-titulo">Entrega e Regularização</h3><p class="processo-desc">Entrega final com documentação técnica completa e suporte junto aos órgãos competentes.</p></div>
+  </div>
+</section>
+
+<!-- DEPOIMENTOS -->
+<section id="depoimentos">
+  <div class="dep-header">
+    <div>
+      <div class="secao-label reveal">Clientes</div>
+      <h2 class="secao-titulo reveal" style="transition-delay:.08s;">O que dizem sobre<br>a <em>Mezani</em></h2>
+    </div>
+  </div>
+  <div class="dep-grid">
+    <div class="dep-card reveal">
+      <div class="dep-estrelas">
+        <svg class="estrela" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg class="estrela" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg class="estrela" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg class="estrela" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg class="estrela" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      </div>
+      <p class="dep-texto">"A Mezani cuidou de toda a regularização do meu imóvel com muita competência. Processo que parecia complicado foi resolvido de forma rápida e transparente."</p>
+      <div class="dep-autor"><div class="dep-avatar">CH</div><div><div class="dep-nome">Carlos Henrique</div><div class="dep-cidade">Contagem, MG</div></div></div>
+    </div>
+    <div class="dep-card reveal" style="transition-delay:.1s;">
+      <div class="dep-estrelas">
+        <svg class="estrela" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg class="estrela" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg class="estrela" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg class="estrela" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg class="estrela" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      </div>
+      <p class="dep-texto">"Contratei para administração da reforma da minha casa. Acompanhamento excelente, cronograma cumprido e qualidade de execução acima do esperado."</p>
+      <div class="dep-autor"><div class="dep-avatar">AP</div><div><div class="dep-nome">Ana Paula Ferreira</div><div class="dep-cidade">Belo Horizonte, MG</div></div></div>
+    </div>
+    <div class="dep-card reveal" style="transition-delay:.2s;">
+      <div class="dep-estrelas">
+        <svg class="estrela" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg class="estrela" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg class="estrela" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg class="estrela" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg class="estrela" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      </div>
+      <p class="dep-texto">"Projeto estrutural detalhado e entregue no prazo. Profissionais sérios, comunicativos e extremamente técnicos. Recomendo sem hesitar."</p>
+      <div class="dep-autor"><div class="dep-avatar">RA</div><div><div class="dep-nome">Roberto Almeida</div><div class="dep-cidade">Nova Lima, MG</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTATO -->
+<section id="contato">
+  <div class="contato-grid">
+    <div class="reveal">
+      <div class="secao-label">Contato</div>
+      <h2 class="secao-titulo">Vamos conversar sobre<br>seu <em>projeto?</em></h2>
+      <p style="font-size:.88rem; line-height:1.8; color:var(--cinza); margin:1.2rem 0 0;">
+        Entre em contato e receba uma avaliação técnica personalizada para o seu imóvel.
+      </p>
+      <div class="contato-info-items">
+        <div class="ci-item">
+          <div class="ci-icone"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 12a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1.18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 9a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
+          <div><div class="ci-label">WhatsApp & Telefone</div><div class="ci-valor">+55 (31) 99662-7305</div></div>
+        </div>
+        <div class="ci-item">
+          <div class="ci-icone"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div><div class="ci-label">Região de Atendimento</div><div class="ci-valor">Minas Gerais</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="reveal" style="transition-delay:.15s;">
+      <div class="form-row">
+        <div class="form-grupo"><label class="form-label">Nome completo</label><input class="form-input" type="text" placeholder="Seu nome"></div>
+        <div class="form-grupo"><label class="form-label">WhatsApp</label><input class="form-input" type="text" placeholder="(00) 00000-0000"></div>
+      </div>
+      <div class="form-grupo">
+        <label class="form-label">Serviço de interesse</label>
+        <select class="form-input">
+          <option value="" disabled selected>Selecione um serviço</option>
+          <option>Projeto de Engenharia</option>
+          <option>Regularização de Edificação</option>
+          <option>Administração de Obra</option>
+          <option>Outro</option>
+        </select>
+      </div>
+      <div class="form-grupo"><label class="form-label">Mensagem</label><textarea class="form-input" placeholder="Descreva brevemente seu projeto ou dúvida..."></textarea></div>
+      <a href="https://wa.me/5531996627305?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20da%20Mezani%20Engenharia." target="_blank" class="btn-laranja" style="width:100%; justify-content:center;">
+        Enviar via WhatsApp
+        <svg viewBox="0 0 24 24" style="width:15px;height:15px;fill:none;stroke:#fff;stroke-width:2;"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="logo-wrap" style="margin-bottom:.5rem;">
+      <div class="logo-icon"><svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:#fff;"><path d="M3 21h18M3 7l9-4 9 4M4 21V7M20 21V7M8 21v-4h8v4"/></svg></div>
+      <div class="logo-texto" style="font-size:.95rem;">MEZANI <span>ENG.</span></div>
+    </div>
+    <p class="footer-copy">© 2025 Mezani Engenharia e Serviços. <strong>Todos os direitos reservados.</strong></p>
+  </div>
+  <div class="footer-direito">Engenharia Civil · Minas Gerais</div>
+</footer>
+
+<!-- WHATSAPP FLUTUANTE -->
+<a href="https://wa.me/5531996627305?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20os%20servi%C3%A7os%20da%20Mezani%20Engenharia." target="_blank" class="whatsapp-float" title="Fale conosco no WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+</a>
+
+<script>
+function toggleMenu() {
+  document.getElementById('hamburger').classList.toggle('open');
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+}, { threshold: 0.1 });
+reveals.forEach(el => observer.observe(el));
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').style.background = window.scrollY > 50 ? 'rgba(10,10,10,.98)' : 'rgba(10,10,10,.75)';
+});
+</script>
+</body>
+</html>
