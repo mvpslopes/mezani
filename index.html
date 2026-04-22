@@ -4,22 +4,39 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#0a0a0a">
+<link rel="icon" type="image/png" href="logo/logo-mezani-4.png">
 <title>Mezani Engenharia e Serviços</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
-  --preto: #0a0a0a;
-  --escuro: #111111;
-  --card-bg: #161616;
-  --laranja: #e8621a;
-  --laranja-hover: #f07234;
-  --branco: #ffffff;
-  --cinza: rgba(255,255,255,0.55);
-  --cinza2: rgba(255,255,255,0.35);
-  --borda: rgba(255,255,255,0.08);
-  --fonte-titulo: 'Syne', sans-serif;
-  --fonte-corpo: 'Inter', sans-serif;
+  --preto: #282828;
+  --escuro: #282828;
+  --card-bg: #282828;
+  --laranja: #EB5B1D;
+  --laranja-hover: #cf4f19;
+  --branco: #FFFFFF;
+  --cinza: #959595;
+  --cinza2: rgba(149,149,149,0.75);
+  --bege: #E2C9B0;
+  --borda: rgba(255,255,255,0.14);
+  --fonte-titulo: 'Urbane', sans-serif;
+  --fonte-corpo: 'Urbane', sans-serif;
+}
+@font-face {
+  font-family: 'Urbane';
+  src: url('arquivos/Urbane/Urbane-Medium.woff2') format('woff2'),
+       url('arquivos/Urbane/Urbane-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Urbane';
+  src: url('arquivos/Urbane/Urbane-Bold.woff2') format('woff2'),
+       url('arquivos/Urbane/Urbane-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
 }
 html { scroll-behavior: smooth; }
 @media (prefers-reduced-motion: reduce) {
@@ -142,7 +159,7 @@ nav.nav--scrolled .logo-img { transform: scale(.94); }
 .btn-laranja svg { width: 15px; height: 15px; fill: none; stroke: #fff; stroke-width: 2; }
 .btn-ghost { display: inline-flex; align-items: center; gap: .6rem; background: transparent; color: rgba(255,255,255,.75); font-family: var(--fonte-corpo); font-size: .8rem; letter-spacing: .06em; text-transform: uppercase; padding: .85rem 1.7rem; text-decoration: none; border: 1px solid rgba(255,255,255,.2); border-radius: 2px; transition: border-color .2s, color .2s; }
 .btn-ghost:hover { border-color: rgba(255,255,255,.5); color: #fff; }
-.hero-trust { margin-top: 2.1rem; display: grid; grid-template-columns: repeat(3, minmax(130px, 1fr)); gap: .8rem; max-width: 560px; }
+.hero-trust { margin-top: 2.1rem; margin-bottom: 3.4rem; display: grid; grid-template-columns: repeat(3, minmax(170px, 1fr)); gap: .8rem; max-width: 620px; }
 .hero-trust-item { border: 1px solid var(--borda); border-radius: 2px; padding: .85rem .9rem; background: rgba(255,255,255,.02); }
 .hero-trust-num { display: block; font-family: var(--fonte-titulo); font-size: 1.4rem; font-weight: 700; letter-spacing: -.02em; line-height: 1; }
 .hero-trust-label { display: block; margin-top: .35rem; font-size: .65rem; letter-spacing: .11em; text-transform: uppercase; color: rgba(255,255,255,.48); }
@@ -258,6 +275,7 @@ section { padding: 6rem 5vw; }
 .form-input { width: 100%; background: rgba(255,255,255,.04); border: 1px solid var(--borda); color: var(--branco); font-family: var(--fonte-corpo); font-size: .86rem; padding: .78rem 1rem; outline: none; border-radius: 3px; transition: border-color .2s; appearance: none; }
 .form-input:focus { border-color: var(--laranja); }
 .form-input::placeholder { color: rgba(255,255,255,.17); }
+select.form-input option { color: #111; background: #fff; }
 textarea.form-input { resize: vertical; min-height: 120px; }
 
 /* FOOTER */
@@ -302,7 +320,8 @@ footer { background: #080808; border-top: 1px solid var(--borda); padding: 2.8re
   .servicos-grid { grid-template-columns: 1fr; }
   .dep-grid { grid-template-columns: 1fr; }
   .projetos-grid { grid-template-columns: 1fr; }
-  .hero-trust { grid-template-columns: repeat(2, minmax(120px, 1fr)); }
+  .hero-trust { grid-template-columns: repeat(2, minmax(150px, 1fr)); margin-bottom: 2.2rem; }
+  .hero-scroll { display: none; }
   .stats-grid { grid-template-columns: repeat(2, 1fr); }
   .processo-grid { grid-template-columns: repeat(2, 1fr); }
   .sobre-badge-flutuante { left: 0; }
@@ -355,6 +374,7 @@ footer { background: #080808; border-top: 1px solid var(--borda); padding: 2.8re
     <li><a href="#sobre">Sobre</a></li>
     <li><a href="#processo">Processo</a></li>
     <li><a href="#depoimentos">Clientes</a></li>
+    <li><a href="internal.html">Sistema Interno</a></li>
   </ul>
   <a href="#contato" class="nav-cta">Iniciar Projeto ↗</a>
   <button type="button" class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobileMenu">
@@ -369,6 +389,7 @@ footer { background: #080808; border-top: 1px solid var(--borda); padding: 2.8re
   <a href="#processo" onclick="toggleMenu()">Processo</a>
   <a href="#depoimentos" onclick="toggleMenu()">Clientes</a>
   <a href="#contato" onclick="toggleMenu()">Contato</a>
+  <a href="internal.html">Sistema Interno</a>
 </div>
 
 <!-- HERO -->
@@ -512,32 +533,7 @@ footer { background: #080808; border-top: 1px solid var(--borda); padding: 2.8re
       Exemplos de demandas recorrentes atendidas pela Mezani com foco em conformidade, seguranca e valorizacao do imovel.
     </p>
   </div>
-  <div class="projetos-grid">
-    <article class="projeto-card reveal">
-      <div class="projeto-img" style="background-image:url('https://images.unsplash.com/photo-1531834685032-c34bf0d84c77?w=1200&auto=format&fit=crop&q=80');"></div>
-      <div class="projeto-body">
-        <span class="projeto-tag">Regularizacao</span>
-        <h3 class="projeto-titulo">Regularizacao de residencia unifamiliar</h3>
-        <p class="projeto-desc">Levantamento tecnico, documentacao e suporte junto aos orgaos municipais para conclusao segura do processo.</p>
-      </div>
-    </article>
-    <article class="projeto-card reveal" style="transition-delay:.1s;">
-      <div class="projeto-img" style="background-image:url('https://images.unsplash.com/photo-1489515217757-5fd1be406fef?w=1200&auto=format&fit=crop&q=80');"></div>
-      <div class="projeto-body">
-        <span class="projeto-tag">Projeto Executivo</span>
-        <h3 class="projeto-titulo">Projeto tecnico para reforma residencial</h3>
-        <p class="projeto-desc">Compatibilizacao de disciplinas para orientar a obra, reduzir retrabalho e aumentar a previsibilidade da execucao.</p>
-      </div>
-    </article>
-    <article class="projeto-card reveal" style="transition-delay:.2s;">
-      <div class="projeto-img" style="background-image:url('https://images.unsplash.com/photo-1429497419816-9ca5cfb4571a?w=1200&auto=format&fit=crop&q=80');"></div>
-      <div class="projeto-body">
-        <span class="projeto-tag">Gestao de Obra</span>
-        <h3 class="projeto-titulo">Acompanhamento tecnico de execucao</h3>
-        <p class="projeto-desc">Controle de etapas, apoio em decisoes e monitoramento da qualidade para manter o cronograma dentro do planejado.</p>
-      </div>
-    </article>
-  </div>
+  <div class="projetos-grid" id="projetosGrid"></div>
 </section>
 
 <!-- PROCESSO -->
@@ -708,6 +704,46 @@ function updateNavbar() {
 }
 window.addEventListener('scroll', updateNavbar);
 updateNavbar();
+
+async function renderProjects() {
+  const grid = document.getElementById('projetosGrid');
+  if (!grid) return;
+  let projects = [];
+  try {
+    const res = await fetch('api/projects.php', { credentials: 'include' });
+    const data = await res.json();
+    projects = Array.isArray(data.projects) ? data.projects : [];
+  } catch (e) {
+    projects = [];
+  }
+  if (!projects.length) {
+    grid.innerHTML = '<article class="projeto-card reveal"><div class="projeto-body"><span class="projeto-tag">Sem projetos</span><h3 class="projeto-titulo">Nenhum projeto cadastrado ainda</h3><p class="projeto-desc">Acesse o Sistema Interno e cadastre os projetos para exibir nesta seção.</p></div></article>';
+    document.querySelectorAll('#projetosGrid .reveal').forEach(function (el) { observer.observe(el); });
+    return;
+  }
+  grid.innerHTML = projects.map(function (p, idx) {
+    const photo = Array.isArray(p.photos) && p.photos[0]
+      ? p.photos[0]
+      : 'https://images.unsplash.com/photo-1489515217757-5fd1be406fef?w=1200&auto=format&fit=crop&q=80';
+    const delay = idx ? ' style="transition-delay:' + (idx * 0.1).toFixed(1) + 's;"' : '';
+    const name = (p.name || '').replace(/</g, '&lt;');
+    const desc = (p.description || '').replace(/</g, '&lt;');
+    const statusLabel = (p.statusLabel || 'Projeto').replace(/</g, '&lt;');
+    const safePhoto = String(photo).replace(/"/g, '&quot;');
+    const projectId = p.id ? String(p.id) : String(idx + 1);
+    return '<article class="projeto-card reveal"' + delay + '>' +
+      '<a href="projeto.html?id=' + encodeURIComponent(projectId) + '" style="text-decoration:none; color:inherit; display:block;">' +
+      '<div class="projeto-img" style="background-image:url(\'' + safePhoto + '\');"></div>' +
+      '<div class="projeto-body">' +
+      '<span class="projeto-tag">' + statusLabel + '</span>' +
+      '<h3 class="projeto-titulo">' + name + '</h3>' +
+      '<p class="projeto-desc">' + desc + '</p>' +
+      '</div></a></article>';
+  }).join('');
+  document.querySelectorAll('#projetosGrid .reveal').forEach(function (el) { observer.observe(el); });
+}
+
+renderProjects();
 </script>
 </body>
 </html>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<x:xmpmeta xmlns:x="adobe:ns:meta/">
+    <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+        <rdf:Description rdf:about="" xmlns="http://namespace.corel.com/Cdr/metadata">
+            <TextStream>
+                <TextRun break="para" lang="1033">ARQUITETURA E ENGENHARIA</TextRun>
+            </TextStream>
+            <TextStream>
+                <TextRun break="para" lang="1033">ENGENHARIA</TextRun>
+                <TextRun break="none" lang="1046"> E SERVIÇOS</TextRun>
+            </TextStream>
+            <TextStream>
+                <TextRun break="para" lang="1033">ENGENHARIA</TextRun>
+                <TextRun break="none" lang="1046"> E SERVIÇOS</TextRun>
+            </TextStream>
+            <TextStream>
+                <TextRun break="para" lang="1033">ARQUITETURA E ENGENHARIA</TextRun>
+            </TextStream>
+            <TextStream>
+                <TextRun break="para" lang="1033">ENGENHARIA</TextRun>
+                <TextRun break="none" lang="1046"> E SERVIÇOS</TextRun>
+            </TextStream>
+            <TextStream>
+                <TextRun break="para" lang="1033">ENGENHARIA</TextRun>
+                <TextRun break="none" lang="1046"> E SERVIÇOS</TextRun>
+            </TextStream>
+            <ObjectNames>
+                <rdf:Bag />
+            </ObjectNames>
+            <LayerNames>
+                <rdf:Bag>
+                    <rdf:li>Camada 1</rdf:li>
+                </rdf:Bag>
+            </LayerNames>
+            <PageNames>
+                <rdf:Bag>
+                    <rdf:li>300X300PX</rdf:li>
+                    <rdf:li>sem fundo</rdf:li>
+                </rdf:Bag>
+            </PageNames>
+        </rdf:Description>
+    </rdf:RDF>
+</x:xmpmeta>

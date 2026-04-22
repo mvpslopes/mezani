@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="logo/logo-mezani-4.png">
+  <title>Sistema Interno | Mezani</title>
+  <style>
+    @font-face {
+      font-family: 'Urbane';
+      src: url('arquivos/Urbane/Urbane-Medium.woff2') format('woff2'),
+           url('arquivos/Urbane/Urbane-Medium.woff') format('woff');
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Urbane';
+      src: url('arquivos/Urbane/Urbane-Bold.woff2') format('woff2'),
+           url('arquivos/Urbane/Urbane-Bold.woff') format('woff');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    :root {
+      --preto: #282828;
+      --escuro: #282828;
+      --card-bg: #282828;
+      --laranja: #EB5B1D;
+      --laranja-hover: #cf4f19;
+      --branco: #FFFFFF;
+      --cinza: #959595;
+      --bege: #E2C9B0;
+      --borda: rgba(255,255,255,0.14);
+      --fonte-titulo: 'Urbane', sans-serif;
+      --fonte-corpo: 'Urbane', sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--preto); color: var(--branco); font-family: var(--fonte-corpo); min-height: 100vh; }
+    .container { width: min(1100px, 94vw); margin: 0 auto; }
+    .topbar { border-bottom: 1px solid var(--borda); background: rgba(10,10,10,0.88); }
+    .topbar .container { height: 74px; display: flex; align-items: center; justify-content: space-between; }
+    .brand { display: inline-flex; align-items: center; text-decoration: none; line-height: 0; }
+    .brand-logo { height: 44px; width: auto; max-width: min(220px, 50vw); object-fit: contain; display: block; }
+    .btn { background: var(--laranja); color: #fff; border: 0; border-radius: 4px; padding: .7rem 1.1rem; cursor: pointer; transition: transform .15s ease, background .2s ease, box-shadow .2s ease; }
+    .btn:hover { background: var(--laranja-hover); }
+    .btn:active { transform: translateY(1px); }
+    .btn-outline { background: transparent; border: 1px solid var(--borda); color: var(--cinza); }
+    .login-wrap { min-height: calc(100vh - 74px); display: grid; place-items: center; padding: 2rem 0; }
+    .card { background: var(--card-bg); border: 1px solid var(--borda); border-radius: 8px; padding: 1.4rem; box-shadow: 0 14px 40px rgba(0,0,0,.26); }
+    .login-card { width: min(460px, 94vw); }
+    h1, h2 { font-family: var(--fonte-titulo); }
+    h1 { font-size: 1.55rem; margin-bottom: .4rem; }
+    .desc { color: var(--cinza); font-size: .9rem; line-height: 1.7; margin-bottom: 1.2rem; }
+    .form-group { margin-bottom: .9rem; }
+    label { display: block; font-size: .73rem; color: var(--cinza); margin-bottom: .36rem; letter-spacing: .08em; text-transform: uppercase; }
+    input, select, textarea {
+      width: 100%; background: rgba(255,255,255,.03); border: 1px solid var(--borda); color: var(--branco);
+      border-radius: 4px; padding: .72rem .85rem; font-family: var(--fonte-corpo);
+    }
+    input:focus, select:focus, textarea:focus { outline: none; border-color: var(--laranja); box-shadow: 0 0 0 3px rgba(232,98,26,.15); }
+    select option { color: #111; background: #fff; }
+    textarea { min-height: 110px; resize: vertical; }
+    .hint { font-size: .82rem; color: var(--cinza); margin-top: .6rem; }
+    .hidden { display: none !important; }
+    .panel { display: grid; grid-template-columns: 240px 1fr; min-height: calc(100vh - 74px); }
+    .sidebar { border-right: 1px solid var(--borda); background: #0c0c0c; padding: 1rem; }
+    .sidebar button {
+      width: 100%; text-align: left; margin-bottom: .55rem; border: 1px solid var(--borda); color: #fff;
+      background: transparent; border-radius: 4px; padding: .7rem .8rem; cursor: pointer;
+    }
+    .sidebar button.active { border-color: rgba(232,98,26,.4); background: rgba(232,98,26,.12); }
+    .content { padding: 1rem; display: grid; gap: 1rem; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: .8rem; }
+    .projects-list, .users-list { display: grid; gap: .7rem; }
+    .item { border: 1px solid var(--borda); border-radius: 6px; padding: .8rem; background: rgba(255,255,255,.02); }
+    .item h3 { font-size: 1rem; margin-bottom: .35rem; }
+    .item p { color: var(--cinza); font-size: .85rem; line-height: 1.6; }
+    .status { display: inline-block; margin-bottom: .4rem; font-size: .7rem; border: 1px solid rgba(232,98,26,.35); color: var(--laranja); padding: .2rem .45rem; border-radius: 999px; text-transform: uppercase; letter-spacing: .05em; }
+    .row { display: flex; gap: .6rem; align-items: center; flex-wrap: wrap; }
+    .feedback { margin-top: .75rem; font-size: .9rem; color: #9be8b4; min-height: 1.2rem; font-weight: 500; }
+    .feedback.error { color: #ff9f9f; }
+    .feedback.ok { color: #9be8b4; }
+    .empty { color: var(--cinza); font-size: .85rem; border: 1px dashed var(--borda); border-radius: 6px; padding: .8rem; }
+    .toast {
+      position: fixed; right: 16px; bottom: 16px; z-index: 9999;
+      background: #1b1b1b; color: #fff; border: 1px solid var(--borda);
+      border-left: 4px solid #9be8b4; border-radius: 8px; padding: .8rem .95rem;
+      box-shadow: 0 10px 28px rgba(0,0,0,.35); display: none; max-width: min(420px, 92vw);
+      font-size: .9rem;
+    }
+    .toast.error { border-left-color: #ff9f9f; }
+    .form-actions { display: flex; gap: .6rem; flex-wrap: wrap; }
+    .toolbar { display: flex; justify-content: space-between; align-items: center; gap: .8rem; flex-wrap: wrap; margin: .9rem 0 1rem; }
+    .filters { display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: .6rem; width: 100%; }
+    .modal-backdrop {
+      position: fixed; inset: 0; z-index: 1200; display: none; place-items: center;
+      background: rgba(0,0,0,.68); backdrop-filter: blur(2px);
+      padding: 1rem;
+    }
+    .modal-backdrop.open { display: grid; }
+    .modal {
+      width: min(760px, 96vw); max-height: 92vh; overflow: auto;
+      background: var(--card-bg); border: 1px solid var(--borda); border-radius: 10px; padding: 1rem;
+      box-shadow: 0 24px 70px rgba(0,0,0,.45);
+    }
+    .modal-head { display: flex; justify-content: space-between; align-items: center; gap: .8rem; margin-bottom: .6rem; }
+    .modal-head h3 { font-family: var(--fonte-titulo); font-size: 1.15rem; }
+    .close-btn { background: transparent; border: 1px solid var(--borda); color: var(--cinza); border-radius: 6px; padding: .45rem .7rem; cursor: pointer; }
+    .photo-actions { display: flex; gap: .6rem; flex-wrap: wrap; margin-top: .45rem; }
+    .preview-grid { margin-top: .7rem; display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: .6rem; }
+    .preview-item { border: 1px solid var(--borda); border-radius: 6px; overflow: hidden; background: rgba(255,255,255,.03); }
+    .preview-item img { width: 100%; height: 90px; object-fit: cover; display: block; }
+    .preview-item button {
+      width: 100%; border: 0; border-top: 1px solid var(--borda); background: transparent; color: #ff9f9f;
+      padding: .35rem .45rem; cursor: pointer; font-size: .78rem;
+    }
+    @media (max-width: 860px) {
+      .panel { grid-template-columns: 1fr; }
+      .sidebar { border-right: 0; border-bottom: 1px solid var(--borda); }
+      .grid-2 { grid-template-columns: 1fr; }
+      .filters { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container">
+      <a href="index.html#hero" class="brand" aria-label="Mezani Engenharia — início">
+        <img src="logo/logo-mezani-1.png" alt="Mezani Engenharia e Serviços" class="brand-logo" width="200" height="92">
+      </a>
+      <div class="row">
+        <a href="index.html" class="btn btn-outline" style="text-decoration:none;">Voltar ao site</a>
+        <button id="logoutBtn" class="btn hidden" type="button">Sair</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="loginView" class="login-wrap">
+    <section class="card login-card">
+      <h1>Acesso ao Sistema Interno</h1>
+      <p class="desc">Entre com seu usuário e senha para acessar os menus de Usuários e Cadastro de Projetos.</p>
+      <form id="loginForm">
+        <div class="form-group">
+          <label for="username">Usuário</label>
+          <input id="username" required placeholder="ex: marcus.lopes">
+        </div>
+        <div class="form-group">
+          <label for="password">Senha</label>
+          <input id="password" type="password" required placeholder="********">
+        </div>
+        <button type="submit" class="btn">Entrar</button>
+        <p id="loginFeedback" class="feedback"></p>
+      </form>
+    </section>
+  </main>
+
+  <main id="appView" class="panel hidden">
+    <aside class="sidebar">
+      <button class="active" data-section="usuarios" type="button">Usuários</button>
+      <button data-section="projetos" type="button">Cadastro de Projetos</button>
+    </aside>
+    <section class="content">
+      <div id="usuariosSection" class="card">
+        <h2 style="margin-bottom:.3rem;">Usuários</h2>
+        <p class="desc">O perfil Root pode cadastrar, gerenciar, desativar e alterar senha.</p>
+        <form id="userForm">
+          <div class="grid-2">
+            <div class="form-group">
+              <label for="newUsername">Usuário</label>
+              <input id="newUsername" required>
+            </div>
+            <div class="form-group">
+              <label for="newProfile">Perfil</label>
+              <select id="newProfile" required>
+                <option value="ADMIN">Admin</option>
+                <option value="ROOT">Root</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="newPassword">Senha</label>
+            <input id="newPassword" type="password" required>
+          </div>
+          <button class="btn" type="submit">Cadastrar usuário</button>
+        </form>
+        <p id="userFeedback" class="feedback"></p>
+        <div id="usersList" class="users-list" style="margin-top:1rem;"></div>
+      </div>
+
+      <div id="projetosSection" class="card hidden">
+        <h2 style="margin-bottom:.3rem;">Cadastro de Projetos</h2>
+        <p class="desc">Projetos cadastrados aqui são exibidos na sessão “Resultados que demonstram nosso padrão técnico”.</p>
+        <div class="toolbar">
+          <button id="newProjectBtn" class="btn" type="button">Novo projeto</button>
+          <div class="filters">
+            <div>
+              <label for="projectFilterSearch">Buscar</label>
+              <input id="projectFilterSearch" placeholder="Nome ou descrição">
+            </div>
+            <div>
+              <label for="projectFilterStatus">Status</label>
+              <select id="projectFilterStatus">
+                <option value="">Todos</option>
+                <option value="Casa a venda">Casa a venda</option>
+                <option value="Casa em construção">Casa em construção</option>
+                <option value="Projeto concluído">Projeto concluído</option>
+              </select>
+            </div>
+            <div>
+              <label for="projectFilterOrder">Ordenar por</label>
+              <select id="projectFilterOrder">
+                <option value="newest">Mais recentes</option>
+                <option value="oldest">Mais antigos</option>
+                <option value="name">Nome (A-Z)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <p id="projectFeedback" class="feedback"></p>
+        <div id="projectsList" class="projects-list" style="margin-top:1rem;"></div>
+      </div>
+    </section>
+  </main>
+
+  <div id="projectModalBackdrop" class="modal-backdrop" aria-hidden="true">
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="projectModalTitle">
+      <div class="modal-head">
+        <h3 id="projectModalTitle">Novo projeto</h3>
+        <button id="projectModalClose" class="close-btn" type="button">Fechar</button>
+      </div>
+      <form id="projectForm">
+        <input id="projectEditId" type="hidden">
+        <div class="form-group">
+          <label for="projectName">Nome do projeto</label>
+          <input id="projectName" required>
+        </div>
+        <div class="form-group">
+          <label for="projectDescription">Descrição do projeto</label>
+          <textarea id="projectDescription" required></textarea>
+        </div>
+        <div class="form-group">
+          <label for="projectStatus">Status</label>
+          <select id="projectStatus" required>
+            <option value="Casa a venda">Casa a venda</option>
+            <option value="Casa em construção">Casa em construção</option>
+            <option value="Projeto concluído">Projeto concluído</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="projectPhotos">Fotos do projeto (upload múltiplo)</label>
+          <input id="projectPhotos" type="file" accept="image/*" multiple>
+        </div>
+        <div class="form-group">
+          <label for="projectPhotoUrls">Ou URLs das fotos (opcional, separadas por vírgula)</label>
+          <input id="projectPhotoUrls" placeholder="https://.../foto1.jpg, https://.../foto2.jpg">
+          <div class="photo-actions">
+            <button id="addPhotoUrlsBtn" class="btn btn-outline" type="button">Adicionar URLs</button>
+          </div>
+          <div id="projectPhotosPreview" class="preview-grid"></div>
+        </div>
+        <div class="form-actions">
+          <button id="projectSubmitBtn" class="btn" type="submit">Salvar projeto</button>
+          <button id="projectCancelEditBtn" class="btn btn-outline hidden" type="button">Cancelar edição</button>
+        </div>
+      </form>
+    </section>
+  </div>
+
+  <script>
+    async function apiFetch(url, options) {
+      const res = await fetch(url, Object.assign({ credentials: 'include' }, options || {}));
+      const data = await res.json().catch(function () { return {}; });
+      if (!res.ok || data.ok === false) throw new Error((data && data.message) || 'Falha na requisicao.');
+      return data;
+    }
+
+    let currentUser = null;
+    let users = [];
+    let projects = [];
+    let projectDraftPhotos = [];
+    function isDataUrl(value) {
+      return /^data:/i.test(String(value || '').trim());
+    }
+
+    const projectFilters = { search: '', status: '', order: 'newest' };
+
+    function showToast(message, isError) {
+      let toast = document.getElementById('globalToast');
+      if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'globalToast';
+        toast.className = 'toast';
+        document.body.appendChild(toast);
+      }
+      toast.textContent = message;
+      toast.classList.toggle('error', !!isError);
+      toast.style.display = 'block';
+      window.clearTimeout(showToast._timer);
+      showToast._timer = window.setTimeout(function () { toast.style.display = 'none'; }, 2600);
+    }
+
+    function setFeedback(id, message, isError) {
+      const fb = document.getElementById(id);
+      if (!fb) return;
+      fb.textContent = message || '';
+      fb.classList.remove('error', 'ok');
+      if (message) fb.classList.add(isError ? 'error' : 'ok');
+      if (message) showToast(message, isError);
+    }
+
+    function renderUsers() {
+      const list = document.getElementById('usersList');
+      if (!users.length) return void (list.innerHTML = '<div class="empty">Nenhum usuário cadastrado.</div>');
+      list.innerHTML = users.map(function (u, idx) {
+        const canManage = currentUser && currentUser.profile === 'ROOT';
+        const controls = canManage
+          ? '<div class="row"><button class="btn btn-outline" type="button" onclick="toggleUser(' + idx + ')">' + (u.active ? 'Desativar' : 'Ativar') + '</button><button class="btn btn-outline" type="button" onclick="changePassword(' + idx + ')">Alterar senha</button></div>'
+          : '';
+        return '<div class="item"><div class="row" style="justify-content:space-between;"><h3>' + u.username + ' (' + u.profile + ')</h3><span class="status">' + (u.active ? 'Ativo' : 'Inativo') + '</span></div>' + controls + '</div>';
+      }).join('');
+    }
+
+    function renderProjects() {
+      const list = document.getElementById('projectsList');
+      let filtered = projects.slice();
+      if (projectFilters.search) {
+        const term = projectFilters.search.toLowerCase();
+        filtered = filtered.filter(function (p) { return String(p.name || '').toLowerCase().includes(term) || String(p.description || '').toLowerCase().includes(term); });
+      }
+      if (projectFilters.status) filtered = filtered.filter(function (p) { return p.statusLabel === projectFilters.status; });
+      if (projectFilters.order === 'oldest') filtered.sort(function (a, b) { return Number(a.id || 0) - Number(b.id || 0); });
+      else if (projectFilters.order === 'name') filtered.sort(function (a, b) { return String(a.name || '').localeCompare(String(b.name || '')); });
+      else filtered.sort(function (a, b) { return Number(b.id || 0) - Number(a.id || 0); });
+      if (!filtered.length) return void (list.innerHTML = '<div class="empty">Nenhum projeto cadastrado ainda.</div>');
+      list.innerHTML = filtered.map(function (p) {
+        const qtdFotos = Array.isArray(p.photos) ? p.photos.length : 0;
+        return '<div class="item"><span class="status">' + p.statusLabel + '</span><h3>' + p.name + '</h3><p>' + p.description + '</p><p style="margin-top:.45rem;">Fotos cadastradas: ' + qtdFotos + '</p><div class="row" style="margin-top:.55rem;"><button class="btn btn-outline" type="button" onclick="editProject(\'' + p.id + '\')">Editar</button><button class="btn btn-outline" type="button" onclick="removeProject(\'' + p.id + '\')">Excluir</button></div></div>';
+      }).join('');
+    }
+
+    function showApp(user) {
+      currentUser = user;
+      document.getElementById('loginView').classList.add('hidden');
+      document.getElementById('appView').classList.remove('hidden');
+      document.getElementById('logoutBtn').classList.remove('hidden');
+      const userForm = document.getElementById('userForm');
+      const userFeedback = document.getElementById('userFeedback');
+      if (user.profile !== 'ROOT') {
+        userForm.classList.add('hidden');
+        userFeedback.textContent = 'Perfil Admin: somente visualização de usuários.';
+      } else {
+        userForm.classList.remove('hidden');
+        userFeedback.textContent = '';
+      }
+    }
+
+    async function refreshUsers() {
+      const data = await apiFetch('api/users.php');
+      users = Array.isArray(data.users) ? data.users : [];
+      renderUsers();
+    }
+
+    async function refreshProjects() {
+      const data = await apiFetch('api/projects.php');
+      projects = Array.isArray(data.projects) ? data.projects : [];
+      renderProjects();
+    }
+
+    function resetProjectForm() {
+      document.getElementById('projectForm').reset();
+      document.getElementById('projectEditId').value = '';
+      document.getElementById('projectSubmitBtn').textContent = 'Salvar projeto';
+      document.getElementById('projectCancelEditBtn').classList.add('hidden');
+      document.getElementById('projectModalTitle').textContent = 'Novo projeto';
+      projectDraftPhotos = [];
+      renderProjectPhotosPreview();
+    }
+
+    function renderProjectPhotosPreview() {
+      const wrap = document.getElementById('projectPhotosPreview');
+      if (!projectDraftPhotos.length) return void (wrap.innerHTML = '<div class="empty">Nenhuma foto adicionada no rascunho.</div>');
+      wrap.innerHTML = projectDraftPhotos.map(function (photo, idx) {
+        const safeSrc = String(photo && photo.src ? photo.src : '').replace(/"/g, '&quot;');
+        return '<div class="preview-item"><img src="' + safeSrc + '" alt="Pré-visualização da foto ' + (idx + 1) + '"><button type="button" onclick="removeDraftPhoto(' + idx + ')">Excluir foto</button></div>';
+      }).join('');
+    }
+
+    function openProjectModal() { document.getElementById('projectModalBackdrop').classList.add('open'); }
+    function closeProjectModal() { document.getElementById('projectModalBackdrop').classList.remove('open'); }
+
+    document.getElementById('logoutBtn').addEventListener('click', function () {
+      apiFetch('api/auth.php?action=logout', { method: 'POST' }).finally(function () {
+        currentUser = null; users = []; projects = [];
+        document.getElementById('loginView').classList.remove('hidden');
+        document.getElementById('appView').classList.add('hidden');
+        document.getElementById('logoutBtn').classList.add('hidden');
+      });
+    });
+
+    document.getElementById('loginForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+      try {
+        const data = await apiFetch('api/auth.php?action=login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username: document.getElementById('username').value.trim(), password: document.getElementById('password').value })
+        });
+        showApp(data.user);
+        await refreshUsers();
+        await refreshProjects();
+        setFeedback('loginFeedback', 'Login realizado com sucesso.', false);
+      } catch (err) {
+        setFeedback('loginFeedback', err.message || 'Falha no login.', true);
+      }
+    });
+
+    document.querySelectorAll('.sidebar button').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        document.querySelectorAll('.sidebar button').forEach(function (b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        const sec = btn.getAttribute('data-section');
+        document.getElementById('usuariosSection').classList.toggle('hidden', sec !== 'usuarios');
+        document.getElementById('projetosSection').classList.toggle('hidden', sec !== 'projetos');
+      });
+    });
+
+    document.getElementById('userForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+      if (!currentUser || currentUser.profile !== 'ROOT') return void setFeedback('userFeedback', 'Apenas ROOT pode cadastrar usuários.', true);
+      try {
+        await apiFetch('api/users.php', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username: document.getElementById('newUsername').value.trim(), profile: document.getElementById('newProfile').value, password: document.getElementById('newPassword').value })
+        });
+        await refreshUsers();
+        e.target.reset();
+        setFeedback('userFeedback', 'Usuário cadastrado com sucesso.', false);
+      } catch (err) { setFeedback('userFeedback', err.message || 'Falha ao cadastrar usuário.', true); }
+    });
+
+    document.getElementById('newProjectBtn').addEventListener('click', function () { resetProjectForm(); openProjectModal(); });
+    document.getElementById('projectModalClose').addEventListener('click', closeProjectModal);
+    document.getElementById('projectModalBackdrop').addEventListener('click', function (e) { if (e.target && e.target.id === 'projectModalBackdrop') closeProjectModal(); });
+    document.getElementById('projectCancelEditBtn').addEventListener('click', function () { resetProjectForm(); closeProjectModal(); });
+
+    document.getElementById('projectPhotos').addEventListener('change', function (e) {
+      const files = Array.from(e.target.files || []);
+      if (!files.length) return;
+      Promise.all(files.map(function (file) {
+        return new Promise(function (resolve, reject) {
+          const reader = new FileReader();
+          reader.onload = function () { resolve({ src: String(reader.result), isUpload: true }); };
+          reader.onerror = reject;
+          reader.readAsDataURL(file);
+        });
+      })).then(function (previews) {
+        projectDraftPhotos = projectDraftPhotos.concat(previews);
+        renderProjectPhotosPreview();
+        setFeedback('projectFeedback', 'Fotos adicionadas ao rascunho.', false);
+      }).catch(function () { setFeedback('projectFeedback', 'Falha ao processar fotos.', true); });
+    });
+
+    document.getElementById('addPhotoUrlsBtn').addEventListener('click', function () {
+      const input = document.getElementById('projectPhotoUrls');
+      const urls = String(input.value || '').split(',').map(function (p) { return p.trim(); }).filter(Boolean);
+      if (!urls.length) return void setFeedback('projectFeedback', 'Informe ao menos uma URL válida para adicionar.', true);
+      projectDraftPhotos = projectDraftPhotos.concat(urls.map(function (u) { return { src: u, isUpload: false }; }));
+      input.value = '';
+      renderProjectPhotosPreview();
+      setFeedback('projectFeedback', 'URLs adicionadas ao rascunho.', false);
+    });
+
+    document.getElementById('projectForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const editId = document.getElementById('projectEditId').value;
+      const files = Array.from(document.getElementById('projectPhotos').files || []);
+      const existingUrls = projectDraftPhotos
+        .filter(function (p) { return p && !p.isUpload && !isDataUrl(p.src); })
+        .map(function (p) { return p.src; })
+        .filter(Boolean);
+      if (!existingUrls.length && !files.length) return void setFeedback('projectFeedback', 'Adicione pelo menos uma foto (upload ou URL).', true);
+      const form = new FormData();
+      form.append('name', document.getElementById('projectName').value.trim());
+      form.append('description', document.getElementById('projectDescription').value.trim());
+      form.append('statusLabel', document.getElementById('projectStatus').value);
+      form.append('existing_urls', JSON.stringify(existingUrls));
+      files.forEach(function (f) { form.append('photos[]', f); });
+      if (editId) { form.append('_method', 'PUT'); form.append('projectId', editId); }
+      try {
+        await apiFetch('api/projects.php', { method: 'POST', body: form });
+        await refreshProjects();
+        resetProjectForm();
+        closeProjectModal();
+        setFeedback('projectFeedback', editId ? 'Projeto atualizado com sucesso.' : 'Projeto salvo com sucesso.', false);
+      } catch (err) { setFeedback('projectFeedback', err.message || 'Falha ao salvar projeto.', true); }
+    });
+
+    window.toggleUser = async function (index) {
+      if (!currentUser || currentUser.profile !== 'ROOT') return void setFeedback('userFeedback', 'Apenas ROOT pode gerenciar usuários.', true);
+      try {
+        const u = users[index];
+        await apiFetch('api/users.php', { method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ userId: u.id, active: !u.active }) });
+        await refreshUsers();
+        setFeedback('userFeedback', 'Status do usuário atualizado.', false);
+      } catch (err) { setFeedback('userFeedback', err.message || 'Falha ao atualizar usuário.', true); }
+    };
+
+    window.changePassword = async function (index) {
+      if (!currentUser || currentUser.profile !== 'ROOT') return void setFeedback('userFeedback', 'Apenas ROOT pode alterar senha.', true);
+      const newPass = prompt('Nova senha para ' + users[index].username + ':');
+      if (!newPass) return;
+      try {
+        await apiFetch('api/users.php', { method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ userId: users[index].id, newPassword: newPass }) });
+        setFeedback('userFeedback', 'Senha alterada com sucesso.', false);
+      } catch (err) { setFeedback('userFeedback', err.message || 'Falha ao alterar senha.', true); }
+    };
+
+    window.editProject = function (projectId) {
+      const proj = projects.find(function (p) { return String(p.id) === String(projectId); });
+      if (!proj) return;
+      document.getElementById('projectEditId').value = String(proj.id);
+      document.getElementById('projectName').value = proj.name || '';
+      document.getElementById('projectDescription').value = proj.description || '';
+      document.getElementById('projectStatus').value = proj.statusLabel || 'Casa a venda';
+      document.getElementById('projectPhotoUrls').value = '';
+      projectDraftPhotos = Array.isArray(proj.photos) ? proj.photos.map(function (u) { return { src: u, isUpload: false }; }) : [];
+      renderProjectPhotosPreview();
+      document.getElementById('projectSubmitBtn').textContent = 'Atualizar projeto';
+      document.getElementById('projectCancelEditBtn').classList.remove('hidden');
+      document.getElementById('projectModalTitle').textContent = 'Editar projeto';
+      openProjectModal();
+    };
+
+    window.removeProject = async function (projectId) {
+      if (!window.confirm('Deseja realmente excluir este projeto?')) return;
+      const form = new FormData();
+      form.append('_method', 'DELETE');
+      form.append('projectId', String(projectId));
+      try {
+        await apiFetch('api/projects.php', { method: 'POST', body: form });
+        await refreshProjects();
+        setFeedback('projectFeedback', 'Projeto excluído com sucesso.', false);
+      } catch (err) { setFeedback('projectFeedback', err.message || 'Falha ao excluir projeto.', true); }
+    };
+
+    document.getElementById('projectFilterSearch').addEventListener('input', function (e) { projectFilters.search = String(e.target.value || '').trim(); renderProjects(); });
+    document.getElementById('projectFilterStatus').addEventListener('change', function (e) { projectFilters.status = e.target.value || ''; renderProjects(); });
+    document.getElementById('projectFilterOrder').addEventListener('change', function (e) { projectFilters.order = e.target.value || 'newest'; renderProjects(); });
+
+    window.removeDraftPhoto = function (index) {
+      if (index < 0 || index >= projectDraftPhotos.length) return;
+      projectDraftPhotos.splice(index, 1);
+      renderProjectPhotosPreview();
+    };
+
+    (async function initAuth() {
+      try {
+        const data = await apiFetch('api/auth.php?action=me');
+        if (data && data.user) {
+          showApp(data.user);
+          await refreshUsers();
+          await refreshProjects();
+        }
+      } catch (e) {}
+    })();
+  </script>
+</body>
+</html>

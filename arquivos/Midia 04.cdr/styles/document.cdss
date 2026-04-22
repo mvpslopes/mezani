@@ -1,0 +1,815 @@
+{
+  "version": 2200,
+  "style": {
+    "~artisticmedia~": {
+      "fill": {
+        "secondaryColor": "CMYK,USER,0,0,0,0,100,00000000-0000-0000-0000-000000000000",
+        "primaryColor": "CMYK,USER,0,0,0,100,100,00000000-0000-0000-0000-000000000000",
+        "type": "1"
+      },
+      "outline": {
+        "width": "0",
+        "color": "CMYK,USER,0,0,0,100,100,00000000-0000-0000-0000-000000000000"
+      }
+    },
+    "~artistic~": {
+      "character": {
+        "fill": {
+          "secondaryColor": "CMYK,USER,0,0,0,0,100,00000000-0000-0000-0000-000000000000",
+          "primaryColor": "CMYK,USER,0,0,0,100,100,00000000-0000-0000-0000-000000000000",
+          "type": "1"
+        },
+        "angle": "0",
+        "outline": {
+          "width": "0",
+          "color": "CMYK,USER,0,0,0,100,100,00000000-0000-0000-0000-000000000000"
+        },
+        "h_shift": "0",
+        "v_shift": "0",
+        "latin": {
+          "font": "Arial",
+          "font_axes": "",
+          "weight": "64",
+          "italic": "0",
+          "size": "84667",
+          "underline": "0",
+          "strikeout": "0",
+          "script": "0",
+          "effect": "0",
+          "version": "Version 7.00",
+          "overline": "0",
+          "charset": "0",
+          "technology": "4"
+        },
+        "RTL": {
+          "font": "Arial",
+          "font_axes": "",
+          "weight": "64",
+          "italic": "0",
+          "size": "84667",
+          "underline": "0",
+          "strikeout": "0",
+          "script": "0",
+          "effect": "0",
+          "version": "Version 7.00",
+          "overline": "0",
+          "charset": "178",
+          "technology": "4"
+        },
+        "farEast": {
+          "font": "MS Gothic",
+          "font_axes": "",
+          "weight": "64",
+          "italic": "0",
+          "size": "84667",
+          "underline": "0",
+          "strikeout": "0",
+          "script": "0",
+          "effect": "0",
+          "version": "Version 5.32",
+          "overline": "0",
+          "charset": "128",
+          "technology": "4"
+        }
+      },
+      "paragraph": {
+        "thinDistance": "-90909",
+        "dblUnderline1Distance": "-90909",
+        "dblUnderline2Absolute": "0",
+        "interWordSpacing": "1000000",
+        "dblUnderline2Thickness": "45455",
+        "thinOverlineThickness": "45455",
+        "dblOverline1Absolute": "0",
+        "dblOverline2Distance": "890910",
+        "dblOverline2Absolute": "0",
+        "thinStrikeoutThickness": "45455",
+        "thickStrikeoutThickness": "90909",
+        "dblStrikeout2Absolute": "0",
+        "dblUnderline2Distance": "-181819",
+        "thinOverlineDistance": "845455",
+        "thickStrikeoutAbsolute": "0",
+        "dblStrikeout2Thickness": "45455",
+        "interCharSpacing": "0",
+        "thinAbsolute": "0",
+        "thinThickness": "45455",
+        "thickOverlineThickness": "90909",
+        "dblOverline1Thickness": "45455",
+        "thinOverlineAbsolute": "0",
+        "dblOverline2Thickness": "45455",
+        "interLineSpacing": "1000000",
+        "thinStrikeoutAbsolute": "0",
+        "thickStrikeoutDistance": "356060",
+        "dblUnderline1Absolute": "0",
+        "thickOverlineAbsolute": "0",
+        "dblStrikeout1Absolute": "0",
+        "maxInterCharSpacing": "2000000",
+        "thickDistance": "-90909",
+        "dblOverline1Distance": "800000",
+        "spacingMethod": "0",
+        "afterParaSpacing": "0",
+        "dblUnderline1Thickness": "45455",
+        "thickAbsolute": "0",
+        "thinStrikeoutDistance": "333333",
+        "thickOverlineDistance": "868182",
+        "dblStrikeout1Distance": "378788",
+        "thickThickness": "90909",
+        "dblStrikeout1Thickness": "45455",
+        "dblStrikeout2Distance": "287878",
+        "interLangSpacing": "0",
+        "beforeParaSpacing": "1000000",
+        "maxInterWordSpacing": "3000000",
+        "minInterWordSpacing": "600000"
+      },
+      "transparency": {
+      }
+    },
+    "~barcode~": {
+      "transparency": {
+      },
+      "barcode": {
+        "outline": {
+          "width": "0",
+          "color": "CMYK,USER,0,0,0,100,100,00000000-0000-0000-0000-000000000000"
+        },
+        "pixelFill": {
+          "secondaryColor": "CMYK,USER,0,0,0,0,100,00000000-0000-0000-0000-000000000000",
+          "primaryColor": "CMYK,USER,0,0,0,100,100,00000000-0000-0000-0000-000000000000",
+          "type": "1",
+          "winding": "1"
+        },
+        "backgroundFill": {
+          "secondaryColor": "CMYK,USER,0,0,0,0,100,00000000-0000-0000-0000-000000000000",
+          "primaryColor": "CMYK,USER,0,0,0,0,100,00000000-0000-0000-0000-000000000000",
+          "type": "1"
+        }
+      }
+    },
+    "~callout~": {
+      "fill": {
+        "secondaryColor": "CMYK,USER,0,0,0,0,100,00000000-0000-0000-0000-000000000000",
+        "primaryColor": "CMYK,USER,0,0,0,0,100,00000000-0000-0000-0000-000000000000",
+        "type": "1"
+      },
+      "outline": {
+        "width": "762",
+        "leftArrow": "M-1333253,-357244 L0,0 L-1333253,357244 L-1333253,-357244 Z|666626",
+        "color": "CMYK,USER,80,40,0,20,100,00000000-0000-0000-0000-000000000000"
+      },
+      "character": {
+        "fill": {
+          "secondaryColor": "CMYK,USER,0,0,0,0,100,00000000-0000-0000-0000-000000000000",
+          "primaryColor": "CMYK,USER,80,40,0,20,100,00000000-0000-0000-0000-000000000000",
+          "type": "1"
+        },
+        "angle": "0",
+        "outline": {
+          "width": "0",
+          "color": "CMYK,USER,80,40,0,20,100,00000000-0000-0000-0000-000000000000"
+        },
+        "h_shift": "0",
+        "v_shift": "0",
+        "latin": {
+          "font": "Arial",
+          "font_axes": "",
+          "weight": "64",
+          "italic": "0",
+          "size": "42333",
+          "underline": "0",
+          "strikeout": "0",
+          "script": "0",
+          "effect": "0",
+          "version": "Version 7.00",
+          "overline": "0",
+          "charset": "0",
+          "technology": "4"
+        },
+        "RTL": {
+          "font": "Arial",
+          "font_axes": "",
+          "weight": "64",
+          "italic": "0",
+          "size": "42333",
+          "underline": "0",
+          "strikeout": "0",
+          "script": "0",
+          "effect": "0",
+          "version": "Version 7.00",
+          "overline": "0",
+          "charset": "178",
+          "technology": "4"
+        },
+        "farEast": {
+          "font": "MS Gothic",
+          "font_axes": "",
+          "weight": "64",
+          "italic": "0",
+          "size": "42333",
+          "underline": "0",
+          "strikeout": "0",
+          "script": "0",
+          "effect": "0",
+          "version": "Version 5.32",
+          "overline": "0",
+          "charset": "128",
+          "technology": "4"
+        }
+      },
+      "callout": {
+      }
+    },
+    "~dimension~": {
+      "fill": {
+        "secondaryColor": "CMYK,USER,0,0,0,0,100,00000000-0000-0000-0000-000000000000",
+        "primaryColor": "CMYK,USER,0,0,0,100,100,00000000-0000-0000-0000-000000000000"
+      },
+      "outline": {
+        "width": "762",
+        "leftArrow": "M-1333253,-357244 L0,0 L-1333253,357244 L-1333253,-357244 Z|666626",
+        "rightArrow": "M-1333253,-357244 L0,0 L-1333253,357244 L-1333253,-357244 Z|666626",
+        "color": "CMYK,USER,80,40,0,20,100,00000000-0000-0000-0000-000000000000"
+      },
+      "character": {
+        "fill": {
+          "secondaryColor": "CMYK,USER,0,0,0,0,100,00000000-0000-0000-0000-000000000000",
+          "primaryColor": "CMYK,USER,80,40,0,20,100,00000000-0000-0000-0000-000000000000",
+          "type": "1"
+        },
+        "angle": "0",
+        "outline": {
+          "width": "0",
+          "color": "CMYK,USER,80,40,0,20,100,00000000-0000-0000-0000-000000000000"
+        },
+        "h_shift": "0",
+        "v_shift": "0",
+        "latin": {
+          "font": "Arial",
+          "font_axes": "",
+          "weight": "64",
+          "italic": "0",
+          "size": "42333",
+          "underline": "0",
+          "strikeout": "0",
+          "script": "0",
+          "effect": "0",
+          "version": "Version 7.00",
+          "overline": "0",
+          "charset": "0",
+          "technology": "4"
+        },
+        "RTL": {
+          "font": "Arial",
+          "font_axes": "",
+          "weight": "64",
+          "italic": "0",
+          "size": "42333",
+          "underline": "0",
+          "strikeout": "0",
+          "script": "0",
+          "effect": "0",
+          "version": "Version 7.00",
+          "overline": "0",
+          "charset": "178",
+          "technology": "4"
+        },
+        "farEast": {
+          "font": "MS Gothic",
+          "font_axes": "",
+          "weight": "64",
+          "italic": "0",
+          "size": "42333",
+          "underline": "0",
+          "strikeout": "0",
+          "script": "0",
+          "effect": "0",
+          "version": "Version 5.32",
+          "overline": "0",
+          "charset": "128",
+          "technology": "4"
+        }
+      },
+      "dimension": {
+        "textPlacement": "2",
+        "horizontalText": "0",
+        "centerText": "1",
+        "boxAroundText": "0",
+        "useDefaultOverhang": "1",
+        "overhang": "0",
+        "useDefaultAnchorGap": "1",
+        "anchorGap": "0",
+        "showExtLines": "1",
+        "precision": "2",
+        "textStyle": "0",
+        "showLeadingZero": "1",
+        "reverseTerminators": "0",
+        "showUnits": "1",
+        "suffix": "",
+        "showInnerExtensionLines": "1",
+        "radialTextAboveLine": "0",
+        "includeCDReverseTerminated": "0",
+        "hideCDWhenReverseTerminated": "0",
+        "useDefaultLabelGap": "1",
+        "angularUnits": "1",
+        "autoReverseTerminators": "1",
+        "hideGapOnFreeExtension": "1",
+        "units": "3",
+        "radialSymbol": "4",
+        "reverseTerminatedLength": "0",
+        "dynamicText": "1",
+        "labelGap": "0",
+        "dimetricSymbol": "6",
+        "useDefaultReverseTerminatedLength": "1",
+        "prefix": "",
+        "radialInsideOutside": "0"
+      }
+    },
+    "~graphic~": {
+      "fill": {
+        "secondaryColor": "CMYK,USER,0,0,0,0,100,00000000-0000-0000-0000-000000000000",
+        "primaryColor": "CMYK,USER,0,0,0,100,100,00000000-0000-0000-0000-000000000000"
+      },
+      "outline": {
+        "width": "2000",
+        "color": "CMYK,USER,0,0,0,100,100,00000000-0000-0000-0000-000000000000"
+      },
+      "transparency": {
+      }
+    },
+    "~paragraph~": {
+      "character": {
+        "fill": {
+          "secondaryColor": "CMYK,USER,0,0,0,0,100,00000000-0000-0000-0000-000000000000",
+          "primaryColor": "CMYK,USER,0,0,0,100,100,00000000-0000-0000-0000-000000000000",
+          "type": "1"
+        },
+        "angle": "0",
+        "outline": {
+          "width": "0",
+          "color": "CMYK,USER,0,0,0,100,100,00000000-0000-0000-0000-000000000000"
+        },
+        "h_shift": "0",
+        "v_shift": "0",
+        "latin": {
+          "font": "Arial",
+          "font_axes": "",
+          "weight": "64",
+          "italic": "0",
+          "size": "42333",
+          "underline": "0",
+          "strikeout": "0",
+          "script": "0",
+          "effect": "0",
+          "version": "Version 7.00",
+          "overline": "0",
+          "charset": "0",
+          "technology": "4"
+        },
+        "RTL": {
+          "font": "Arial",
+          "font_axes": "",
+          "weight": "64",
+          "italic": "0",
+          "size": "42333",
+          "underline": "0",
+          "strikeout": "0",
+          "script": "0",
+          "effect": "0",
+          "version": "Version 7.00",
+          "overline": "0",
+          "charset": "178",
+          "technology": "4"
+        },
+        "farEast": {
+          "font": "MS Gothic",
+          "font_axes": "",
+          "weight": "64",
+          "italic": "0",
+          "size": "42333",
+          "underline": "0",
+          "strikeout": "0",
+          "script": "0",
+          "effect": "0",
+          "version": "Version 5.32",
+          "overline": "0",
+          "charset": "128",
+          "technology": "4"
+        }
+      },
+      "frame": {
+      },
+      "paragraph": {
+        "bulletFont": {
+          "font": "Arial",
+          "weight": "64",
+          "size": "42333",
+          "underline": "0",
+          "strikeout": "0",
+          "script": "0",
+          "effect": "0",
+          "version": "Version 7.00",
+          "overline": "0",
+          "charset": "0",
+          "technology": "4"
+        },
+        "bulletAngle": "0",
+        "bulletFirstCharIndent": "63500",
+        "bulletVShift": "0",
+        "bulletChar": "22200000",
+        "bulletOutline": {
+          "width": "0"
+        },
+        "bulletFill": {
+          "type": "0"
+        },
+        "bulletHShift": "0",
+        "bulletFirstCharIndentIncludesBullet": "1",
+        "bulletHanging": "1",
+        "bulletFormat": "•.",
+        "bulletNumberStyle": "0",
+        "bulletInheritFont": "1",
+        "numberInheritFont": "1",
+        "firstLineIndent": "0",
+        "thinDistance": "-90909",
+        "dblUnderline1Distance": "-90909",
+        "dblUnderline2Absolute": "0",
+        "bulletOn": "0",
+        "interWordSpacing": "1000000",
+        "dblUnderline2Thickness": "45455",
+        "thinOverlineThickness": "45455",
+        "dblOverline1Absolute": "0",
+        "dblOverline2Distance": "890910",
+        "dblOverline2Absolute": "0",
+        "thinStrikeoutThickness": "45455",
+        "thickStrikeoutThickness": "90909",
+        "dblStrikeout2Absolute": "0",
+        "dblUnderline2Distance": "-181819",
+        "thinOverlineDistance": "845455",
+        "thickStrikeoutAbsolute": "0",
+        "dblStrikeout2Thickness": "45455",
+        "restOfLinesIndent": "0",
+        "interCharSpacing": "0",
+        "leftMargin": "0",
+        "thinAbsolute": "0",
+        "thinThickness": "45455",
+        "thickOverlineThickness": "90909",
+        "dblOverline1Thickness": "45455",
+        "thinOverlineAbsolute": "0",
+        "dblOverline2Thickness": "45455",
+        "interLineSpacing": "1000000",
+        "thinStrikeoutAbsolute": "0",
+        "thickStrikeoutDistance": "356060",
+        "levels": {
+          "level4": {
+            "bulletFont": {
+              "font": "Arial",
+              "weight": "64",
+              "size": "42333",
+              "underline": "0",
+              "strikeout": "0",
+              "script": "0",
+              "effect": "0",
+              "version": "Version 7.00",
+              "overline": "0",
+              "charset": "0",
+              "technology": "4"
+            },
+            "bulletAngle": "0",
+            "bulletFirstCharIndent": "63500",
+            "bulletVShift": "0",
+            "bulletChar": "e6250000",
+            "bulletOutline": {
+              "width": "0"
+            },
+            "bulletFill": {
+              "type": "0"
+            },
+            "bulletHShift": "0",
+            "bulletFirstCharIndentIncludesBullet": "1",
+            "bulletHanging": "1",
+            "bulletFormat": "•.",
+            "bulletNumberStyle": "0",
+            "bulletInheritFont": "0",
+            "numberInheritFont": "1"
+          },
+          "level5": {
+            "bulletFont": {
+              "font": "Arial",
+              "weight": "64",
+              "size": "42333",
+              "underline": "0",
+              "strikeout": "0",
+              "script": "0",
+              "effect": "0",
+              "version": "Version 7.00",
+              "overline": "0",
+              "charset": "0",
+              "technology": "4"
+            },
+            "bulletAngle": "0",
+            "bulletFirstCharIndent": "63500",
+            "bulletVShift": "0",
+            "bulletChar": "aa250000",
+            "bulletOutline": {
+              "width": "0"
+            },
+            "bulletFill": {
+              "type": "0"
+            },
+            "bulletHShift": "0",
+            "bulletFirstCharIndentIncludesBullet": "1",
+            "bulletHanging": "1",
+            "bulletFormat": "•.",
+            "bulletNumberStyle": "0",
+            "bulletInheritFont": "0",
+            "numberInheritFont": "1"
+          },
+          "level1": {
+            "bulletFont": {
+              "font": "Arial",
+              "weight": "64",
+              "size": "42333",
+              "underline": "0",
+              "strikeout": "0",
+              "script": "0",
+              "effect": "0",
+              "version": "Version 7.00",
+              "overline": "0",
+              "charset": "0",
+              "technology": "4"
+            },
+            "bulletAngle": "0",
+            "bulletFirstCharIndent": "63500",
+            "bulletVShift": "0",
+            "bulletChar": "e6250000",
+            "bulletOutline": {
+              "width": "0"
+            },
+            "bulletFill": {
+              "type": "0"
+            },
+            "bulletHShift": "0",
+            "bulletFirstCharIndentIncludesBullet": "1",
+            "bulletHanging": "1",
+            "bulletFormat": "•.",
+            "bulletNumberStyle": "0",
+            "bulletInheritFont": "0",
+            "numberInheritFont": "1"
+          },
+          "level6": {
+            "bulletFont": {
+              "font": "Arial",
+              "weight": "64",
+              "size": "42333",
+              "underline": "0",
+              "strikeout": "0",
+              "script": "0",
+              "effect": "0",
+              "version": "Version 7.00",
+              "overline": "0",
+              "charset": "0",
+              "technology": "4"
+            },
+            "bulletAngle": "0",
+            "bulletFirstCharIndent": "63500",
+            "bulletVShift": "0",
+            "bulletChar": "22200000",
+            "bulletOutline": {
+              "width": "0"
+            },
+            "bulletFill": {
+              "type": "0"
+            },
+            "bulletHShift": "0",
+            "bulletFirstCharIndentIncludesBullet": "1",
+            "bulletHanging": "1",
+            "bulletFormat": "•.",
+            "bulletNumberStyle": "0",
+            "bulletInheritFont": "0",
+            "numberInheritFont": "1"
+          },
+          "level7": {
+            "bulletFont": {
+              "font": "Arial",
+              "weight": "64",
+              "size": "42333",
+              "underline": "0",
+              "strikeout": "0",
+              "script": "0",
+              "effect": "0",
+              "version": "Version 7.00",
+              "overline": "0",
+              "charset": "0",
+              "technology": "4"
+            },
+            "bulletAngle": "0",
+            "bulletFirstCharIndent": "63500",
+            "bulletVShift": "0",
+            "bulletChar": "e6250000",
+            "bulletOutline": {
+              "width": "0"
+            },
+            "bulletFill": {
+              "type": "0"
+            },
+            "bulletHShift": "0",
+            "bulletFirstCharIndentIncludesBullet": "1",
+            "bulletHanging": "1",
+            "bulletFormat": "•.",
+            "bulletNumberStyle": "0",
+            "bulletInheritFont": "0",
+            "numberInheritFont": "1"
+          },
+          "level3": {
+            "bulletFont": {
+              "font": "Arial",
+              "weight": "64",
+              "size": "42333",
+              "underline": "0",
+              "strikeout": "0",
+              "script": "0",
+              "effect": "0",
+              "version": "Version 7.00",
+              "overline": "0",
+              "charset": "0",
+              "technology": "4"
+            },
+            "bulletAngle": "0",
+            "bulletFirstCharIndent": "63500",
+            "bulletVShift": "0",
+            "bulletChar": "22200000",
+            "bulletOutline": {
+              "width": "0"
+            },
+            "bulletFill": {
+              "type": "0"
+            },
+            "bulletHShift": "0",
+            "bulletFirstCharIndentIncludesBullet": "1",
+            "bulletHanging": "1",
+            "bulletFormat": "•.",
+            "bulletNumberStyle": "0",
+            "bulletInheritFont": "0",
+            "numberInheritFont": "1"
+          },
+          "level8": {
+            "bulletFont": {
+              "font": "Arial",
+              "weight": "64",
+              "size": "42333",
+              "underline": "0",
+              "strikeout": "0",
+              "script": "0",
+              "effect": "0",
+              "version": "Version 7.00",
+              "overline": "0",
+              "charset": "0",
+              "technology": "4"
+            },
+            "bulletAngle": "0",
+            "bulletFirstCharIndent": "63500",
+            "bulletVShift": "0",
+            "bulletChar": "aa250000",
+            "bulletOutline": {
+              "width": "0"
+            },
+            "bulletFill": {
+              "type": "0"
+            },
+            "bulletHShift": "0",
+            "bulletFirstCharIndentIncludesBullet": "1",
+            "bulletHanging": "1",
+            "bulletFormat": "•.",
+            "bulletNumberStyle": "0",
+            "bulletInheritFont": "0",
+            "numberInheritFont": "1"
+          },
+          "level2": {
+            "bulletFont": {
+              "font": "Arial",
+              "weight": "64",
+              "size": "42333",
+              "underline": "0",
+              "strikeout": "0",
+              "script": "0",
+              "effect": "0",
+              "version": "Version 7.00",
+              "overline": "0",
+              "charset": "0",
+              "technology": "4"
+            },
+            "bulletAngle": "0",
+            "bulletFirstCharIndent": "63500",
+            "bulletVShift": "0",
+            "bulletChar": "aa250000",
+            "bulletOutline": {
+              "width": "0"
+            },
+            "bulletFill": {
+              "type": "0"
+            },
+            "bulletHShift": "0",
+            "bulletFirstCharIndentIncludesBullet": "1",
+            "bulletHanging": "1",
+            "bulletFormat": "•.",
+            "bulletNumberStyle": "0",
+            "bulletInheritFont": "0",
+            "numberInheritFont": "1"
+          }
+        },
+        "dblUnderline1Absolute": "0",
+        "thickOverlineAbsolute": "0",
+        "dblStrikeout1Absolute": "0",
+        "maxInterCharSpacing": "2000000",
+        "thickDistance": "-90909",
+        "dblOverline1Distance": "800000",
+        "spacingMethod": "0",
+        "afterParaSpacing": "0",
+        "dblUnderline1Thickness": "45455",
+        "thickAbsolute": "0",
+        "thinStrikeoutDistance": "333333",
+        "thickOverlineDistance": "868182",
+        "dblStrikeout1Distance": "378788",
+        "thickThickness": "90909",
+        "dblStrikeout1Thickness": "45455",
+        "dblStrikeout2Distance": "287878",
+        "tabs": "0,0,127000|0,0,254000|0,0,381000|0,0,508000|0,0,635000|0,0,762000|0,0,889000|0,0,1016000|0,0,1143000|0,0,1270000|0,0,1397000|0,0,1524000",
+        "tabLeaderSpacing": "1",
+        "interLangSpacing": "0",
+        "beforeParaSpacing": "1000000",
+        "maxInterWordSpacing": "3000000",
+        "minInterWordSpacing": "600000",
+        "tabLeaderChar": "2e000000",
+        "breakCapitalizedWords": "0",
+        "hyphenateHotZone": "127000",
+        "hyphenateMinWordLength": "6",
+        "hangingIndent": "0",
+        "hyphenateMinCharsBefore": "3",
+        "spacingFromText": "0",
+        "breakAllCapWords": "0",
+        "dropCapOn": "0",
+        "autoHyphenate": "0",
+        "hyphenateMinCharsAfter": "2",
+        "linesToDrop": "3"
+      }
+    },
+    "~qrcode~": {
+      "transparency": {
+      },
+      "qrcode": {
+        "outline": {
+          "width": "0",
+          "color": "CMYK,USER,0,0,0,100,100,00000000-0000-0000-0000-000000000000"
+        },
+        "pixelFill": {
+          "secondaryColor": "CMYK,USER,0,0,0,0,100,00000000-0000-0000-0000-000000000000",
+          "primaryColor": "CMYK,USER,0,0,0,100,100,00000000-0000-0000-0000-000000000000",
+          "type": "1",
+          "winding": "1"
+        },
+        "InnerMarkerFill": {
+          "secondaryColor": "CMYK,USER,0,0,0,0,100,00000000-0000-0000-0000-000000000000",
+          "primaryColor": "CMYK,USER,0,0,0,100,100,00000000-0000-0000-0000-000000000000",
+          "type": "1",
+          "winding": "1"
+        },
+        "backgroundFill": {
+          "secondaryColor": "CMYK,USER,0,0,0,0,100,00000000-0000-0000-0000-000000000000",
+          "primaryColor": "CMYK,USER,0,0,0,0,100,00000000-0000-0000-0000-000000000000",
+          "type": "1"
+        },
+        "outerMarkerFill": {
+          "secondaryColor": "CMYK,USER,0,0,0,0,100,00000000-0000-0000-0000-000000000000",
+          "primaryColor": "CMYK,USER,0,0,0,100,100,00000000-0000-0000-0000-000000000000",
+          "type": "1",
+          "winding": "1"
+        }
+      }
+    }
+  },
+  "symmetry": {
+    "~symmetry~": {
+      "type": "0",
+      "outline": {
+        "width": "762",
+        "color": "RGB255,USER,0,160,255,100,00000000-0000-0000-0000-000000000000"
+      },
+      "originX": "0",
+      "rotation": "90000000",
+      "numLines": "1",
+      "originY": "0",
+      "joinThreshold": "20000"
+    }
+  },
+  "color styles": {
+    "palette_xml": {
+      "tag": "palette",
+      "attributes": {
+        "guid": "62c0dfce-ac57-4dd4-bd9d-0ae9a3ab230a",
+        "name": "Paleta de estilos de cores"
+      }
+    },
+    "ruled-harmonies": [
+    ]
+  },
+  "fom data": {
+  }
+}

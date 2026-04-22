@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container version="1.0" xmlns="urn:oasis:names:tc:opendocument:xmlns:container" xmlns:crl="urn:corel:namespaces:zcf:xmlns:container">
+    <rootfiles>
+        <rootfile crl:file-kind="main" full-path="content/root.dat" media-type="application/x-vnd.corel.cdr.rootdata" />
+        <rootfile crl:file-kind="thumbnail" crl:image-height="256" crl:image-width="256" full-path="previews/thumbnail.png" media-type="image/png" />
+        <rootfile crl:caption=":[Página 1];br:[Página 1];" crl:file-kind="page" crl:image-height="256" crl:image-width="256" crl:index="1" full-path="previews/page1.png" media-type="image/png" />
+        <rootfile crl:caption=":[2: 300X300PX];br:[2: 300X300PX];" crl:file-kind="page" crl:image-height="256" crl:image-width="256" crl:index="2" full-path="previews/page2.png" media-type="image/png" />
+        <rootfile crl:caption=":[Página 3];br:[Página 3];" crl:file-kind="page" crl:image-height="256" crl:image-width="256" crl:index="3" full-path="previews/page3.png" media-type="image/png" />
+        <rootfile crl:caption=":[Página 4];br:[Página 4];" crl:file-kind="page" crl:image-height="256" crl:image-width="256" crl:index="4" full-path="previews/page4.png" media-type="image/png" />
+        <rootfile crl:caption=":[Página 5];br:[Página 5];" crl:file-kind="page" crl:image-height="256" crl:image-width="256" crl:index="5" full-path="previews/page5.png" media-type="image/png" />
+        <rootfile crl:caption=":[6: sem fundo];br:[6: sem fundo];" crl:file-kind="page" crl:image-height="256" crl:image-width="256" crl:index="6" full-path="previews/page6.png" media-type="image/png" />
+        <rootfile crl:caption=":[Página 7];br:[Página 7];" crl:file-kind="page" crl:image-height="256" crl:image-width="256" crl:index="7" full-path="previews/page7.png" media-type="image/png" />
+    </rootfiles>
+</container>
